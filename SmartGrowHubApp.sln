@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartGrowHubApp", "SmartGrowHubApp\SmartGrowHubApp.csproj", "{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEE0D84-4C34-47F6-B3FA-EFE0D2E31A55}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6AC1A88-08CF-493D-8D0B-73A960BEA681}
+	EndGlobalSection
+EndGlobal

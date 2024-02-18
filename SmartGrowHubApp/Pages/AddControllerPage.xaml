@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage
+    x:Class="SmartGrowHubApp.Pages.AddControllerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
+    x:DataType="viewModels:AddControllerPageModel"
+    BackgroundColor="#80000000"
+    CloseWhenBackgroundIsClicked="True">
+
+    <mopups:PopupPage.Animation>
+        <mopupsanim:MoveAnimation
+            DurationIn="300"
+            DurationOut="250"
+            PositionIn="Bottom" />
+    </mopups:PopupPage.Animation>
+
+    <Border
+        Grid.Row="1"
+        BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryContainer},
+                                          Dark={StaticResource PrimaryContainerDark}}"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="CenterAndExpand">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20" />
+        </Border.StrokeShape>
+
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <VerticalStackLayout.Resources>
+                <Style TargetType="material:TextField">
+                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource OnPrimaryContainer}, Dark={StaticResource OnPrimaryContainerDark}}" />
+                    <Setter Property="AccentColor" Value="{AppThemeBinding Light={StaticResource OnPrimaryContainer}, Dark={StaticResource OnPrimaryContainerDark}}" />
+                    <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}" />
+                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}" />
+                </Style>
+            </VerticalStackLayout.Resources>
+
+            <material:TextField Title="Enter Id" Text="{Binding Id}" />
+            <material:TextField Title="Enter Name" Text="{Binding Name}" />
+            <material:TextField
+                Title="Enter Description"
+                IsTextPredictionEnabled="True"
+                Text="{Binding Description}" />
+
+            <Label
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Status}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <material:ButtonView
+                BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
+                                                  Dark={StaticResource PrimaryDark}}"
+                HorizontalOptions="CenterAndExpand"
+                Pressed="ButtonView_Pressed"
+                PressedCommand="{Binding AddCommand}"
+                VerticalOptions="Center"
+                WidthRequest="150">
+
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Add"
+                    TextColor="{AppThemeBinding Light={StaticResource OnPrimary},
+                                                Dark={StaticResource OnPrimaryDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+            </material:ButtonView>
+        </VerticalStackLayout>
+    </Border>
+
+
+</mopups:PopupPage>

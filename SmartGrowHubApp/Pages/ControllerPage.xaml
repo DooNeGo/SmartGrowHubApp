@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartGrowHubApp.Pages.ControllerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
+    Title="Home"
+    Padding="10"
+    x:DataType="viewModels:ControllerPageModel"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Background},
+                                      Dark={StaticResource BackgroundDark}}">
+    <!--<Grid
+        Padding="10"
+        RowDefinitions="Auto, *"
+        RowSpacing="20">
+        <Label
+            Grid.Row="0"
+            FontSize="30"
+            HorizontalOptions="Start"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Controller.Name}"
+            TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                        Dark={StaticResource OnBackgroundDark}}"
+            VerticalOptions="StartAndExpand"
+            VerticalTextAlignment="Start" />
+
+        <material:ButtonView
+            Grid.Row="0"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
+                                              Dark={StaticResource PrimaryDark}}"
+            HeightRequest="45"
+            HorizontalOptions="End"
+            VerticalOptions="Center"
+            WidthRequest="45">
+
+            <material:ButtonView.StrokeShape>
+                <RoundRectangle CornerRadius="23" />
+            </material:ButtonView.StrokeShape>
+
+            <Label
+                FontFamily="FASolid"
+                HorizontalOptions="Center"
+                Text="{Static fa:SolidIconFont.Gear}"
+                TextColor="{AppThemeBinding Light={StaticResource OnPrimary},
+                                            Dark={StaticResource OnPrimaryDark}}"
+                VerticalOptions="Center" />
+
+        </material:ButtonView>-->
+
+    <CollectionView
+        Grid.Row="1"
+        ItemSizingStrategy="MeasureAllItems"
+        ItemsSource="{Binding SensorsReading}"
+        SizeChanged="OnSizeChanged">
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                x:Name="gridItemsLayout"
+                HorizontalItemSpacing="10"
+                Orientation="Vertical"
+                VerticalItemSpacing="10" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border
+                    Padding="15"
+                    x:DataType="models:SensorReading"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
+                                                      Dark={StaticResource SecondaryContainerDark}}">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout
+                        x:DataType="models:SensorReading"
+                        HorizontalOptions="Center"
+                        Spacing="5"
+                        VerticalOptions="Center">
+
+                        <HorizontalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="5"
+                            VerticalOptions="Center">
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Value}"
+                                TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                            Dark={StaticResource PrimaryDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Unit}"
+                                TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                            Dark={StaticResource PrimaryDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                        </HorizontalStackLayout>
+
+                        <Label
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Type}"
+                            TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                        Dark={StaticResource OnSecondaryContainerDark}}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                    </VerticalStackLayout>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    <!--</Grid>-->
+</ContentPage>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartGrowHubApp.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
+    Title="Settings"
+    Padding="10"
+    x:DataType="viewModels:SettingsPageModel">
+
+    <CollectionView ItemsSource="{Binding Settings}">
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+                <Border Padding="10" StyleClass="PrimaryContainer">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+
+                    <uranium:ExpanderView x:DataType="models:Setting">
+
+                        <uranium:ExpanderView.Header>
+                            <Label
+                                FontSize="20"
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding Type}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                                            Dark={StaticResource OnPrimaryContainerDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                        </uranium:ExpanderView.Header>
+
+                        <CollectionView ItemsSource="{Binding Components}">
+
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}">
+
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="15" />
+                                        </Border.StrokeShape>
+
+                                        <Grid x:DataType="models:Component" RowDefinitions="Auto">
+                                            <Label
+                                                Margin="30,0,0,0"
+                                                FontSize="18"
+                                                HorizontalOptions="Start"
+                                                HorizontalTextAlignment="Start"
+                                                Text="{Binding Type}"
+                                                TextColor="{AppThemeBinding Light={StaticResource OnSecondary},
+                                                                            Dark={StaticResource OnSecondaryDark}}"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center" />
+
+                                            <HorizontalStackLayout FlowDirection="RightToLeft">
+                                                <Label
+                                                    FontSize="17"
+                                                    HorizontalOptions="Start"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding Unit}"
+                                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondary},
+                                                                                Dark={StaticResource OnSecondaryDark}}"
+                                                    VerticalOptions="Center"
+                                                    VerticalTextAlignment="Center"
+                                                    WidthRequest="40" />
+
+                                                <material:PickerField
+                                                    Margin="5"
+                                                    AllowClear="False"
+                                                    BackgroundColor="Transparent"
+                                                    BorderColor="{AppThemeBinding Light={StaticResource OnSecondary},
+                                                                                  Dark={StaticResource OnSecondaryDark}}"
+                                                    CornerRadius="15"
+                                                    FlowDirection="LeftToRight"
+                                                    FontSize="16"
+                                                    HorizontalOptions="Center"
+                                                    ItemsSource="{Binding AcceptableValues}"
+                                                    SelectedItem="{Binding Value}"
+                                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondary},
+                                                                                Dark={StaticResource OnSecondaryDark}}"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="100" />
+                                            </HorizontalStackLayout>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </uranium:ExpanderView>
+                </Border>
+
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.Footer>
+            <material:ButtonView
+                BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
+                                                  Dark={StaticResource PrimaryDark}}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Save"
+                    TextColor="{AppThemeBinding Light={StaticResource OnPrimary},
+                                                Dark={StaticResource OnPrimaryDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="100" />
+            </material:ButtonView>
+        </CollectionView.Footer>
+    </CollectionView>
+
+</ContentPage>

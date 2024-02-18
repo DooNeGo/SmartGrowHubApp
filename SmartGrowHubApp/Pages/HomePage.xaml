@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartGrowHubApp.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
+    x:DataType="viewModels:HomePageModel"
+    Shell.NavBarIsVisible="False">
+
+    <Grid
+        Padding="10"
+        RowDefinitions="Auto, *"
+        RowSpacing="20">
+
+        <Label
+            Grid.Row="0"
+            FontSize="35"
+            HorizontalOptions="Start"
+            Text="Controllers"
+            TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                        Dark={StaticResource OnBackgroundDark}}"
+            VerticalOptions="Center" />
+
+        <material:ButtonView
+            Grid.Row="0"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
+                                              Dark={StaticResource PrimaryDark}}"
+            HeightRequest="45"
+            HorizontalOptions="End"
+            Pressed="Button_Released"
+            VerticalOptions="Center"
+            WidthRequest="45">
+
+            <material:ButtonView.StrokeShape>
+                <RoundRectangle CornerRadius="24" />
+            </material:ButtonView.StrokeShape>
+
+            <Label
+                FontFamily="FARegular"
+                HorizontalOptions="Center"
+                Text="{Static fa:RegularIconFont.Plus}"
+                TextColor="{AppThemeBinding Light={StaticResource OnPrimary},
+                                            Dark={StaticResource OnPrimaryDark}}"
+                VerticalOptions="Center" />
+
+        </material:ButtonView>
+
+        <CollectionView
+            x:Name="collectionView"
+            Grid.Row="1"
+            CanMixGroups="True"
+            CanReorderItems="True"
+            FlowDirection="LeftToRight"
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            SelectedItems="{Binding SelectedItems, Mode=TwoWay}"
+            SelectionChanged="CollectionView_SelectionChanged"
+            SelectionMode="Single">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    x:Name="gridItemsLayout"
+                    HorizontalItemSpacing="10"
+                    Orientation="Vertical"
+                    VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryContainer}, Dark={StaticResource PrimaryContainerDark}}">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout
+                            x:DataType="models:ControllerModel"
+                            HorizontalOptions="Center"
+                            Spacing="10"
+                            VerticalOptions="Center">
+
+                            <Label
+                                x:Name="nameLabel"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Name}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                                            Dark={StaticResource OnPrimaryContainerDark}}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Status}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

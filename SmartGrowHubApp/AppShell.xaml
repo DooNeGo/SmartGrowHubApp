@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SmartGrowHubApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:local="clr-namespace:SmartGrowHubApp"
+    xmlns:pages="clr-namespace:SmartGrowHubApp.Pages"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    FlyoutBackground="{AppThemeBinding Light={StaticResource PrimaryContainer},
+                                       Dark={StaticResource PrimaryContainerDark}}"
+    FlyoutBehavior="{OnIdiom Phone=Flyout,
+                             Default=Locked}"
+    FlyoutWidth="60"
+    Shell.TabBarBackgroundColor="{AppThemeBinding Light={StaticResource PrimaryContainer},
+                                                  Dark={StaticResource PrimaryContainerDark}}"
+    Shell.TabBarIsVisible="{OnIdiom Phone=True,
+                                    Default=False}">
+
+    <!--<Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Grid RowDefinitions="68">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>-->
+
+    <!--<Shell.FlyoutContentTemplate>
+        <DataTemplate>
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                <VerticalStackLayout.Effects>
+                    <uranium:BlurEffect Mode="Light" AccentOpacity="0.8"/>
+                </VerticalStackLayout.Effects>
+
+
+
+            </VerticalStackLayout>
+        </DataTemplate>
+    </Shell.FlyoutContentTemplate>-->
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Image
+                x:DataType="FlyoutItem"
+                HeightRequest="45"
+                HorizontalOptions="Center"
+                Source="{Binding FlyoutIcon}"
+                VerticalOptions="Center"
+                WidthRequest="30" />
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem Title="Home">
+        <ShellContent ContentTemplate="{DataTemplate pages:ControllerPage}" Route="HomePage" />
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="FASolid"
+                Glyph="{x:Static fa:SolidIconFont.House}"
+                Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                        Dark={StaticResource OnPrimaryContainerDark}}" />
+        </FlyoutItem.Icon>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings">
+        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" Route="SettingsPage" />
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="FASolid"
+                Glyph="{x:Static fa:SolidIconFont.Gear}"
+                Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                        Dark={StaticResource OnPrimaryContainerDark}}" />
+        </FlyoutItem.Icon>
+    </FlyoutItem>
+
+    <TabBar x:Name="PhoneTabBar" Title="Test">
+        <Tab Title="Home">
+            <ShellContent ContentTemplate="{DataTemplate pages:HomePage}" />
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="FASolid"
+                    Glyph="{x:Static fa:SolidIconFont.House}"
+                    Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+            </Tab.Icon>
+        </Tab>
+        <Tab Title="Settings">
+            <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" Route="SettingsPage" />
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="FASolid"
+                    Glyph="{x:Static fa:SolidIconFont.Gear}"
+                    Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+            </Tab.Icon>
+        </Tab>
+    </TabBar>
+
+</Shell>
