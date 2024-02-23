@@ -12,13 +12,14 @@ public enum ComponentType
     Count
 }
 
-public class Component
+public struct Component
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public required ComponentType Type { get; set; }
 
     public required object Value { get; set; }
 
+    [JsonIgnore]
     public required object AcceptableValues { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

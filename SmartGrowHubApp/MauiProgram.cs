@@ -1,11 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using Mopups.Hosting;
-using Mopups.Services;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using Microsoft.Extensions.Logging;
 using SmartGrowHubApp.Pages;
 using SmartGrowHubApp.ViewModels;
 using UraniumUI;
 
 namespace SmartGrowHubApp;
+
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -14,8 +15,9 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseUraniumUI()
+            .UseMauiCommunityToolkit()
+            .UseMauiCommunityToolkitCore()
             .UseUraniumUIMaterial()
-            .ConfigureMopups()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("GoogleSans-Regular.ttf", "GoogleRegular");
@@ -24,7 +26,6 @@ public static class MauiProgram
             });
 
         builder.Services
-            .AddSingleton(MopupService.Instance)
             .AddSingleton<ControllerPage>()
             .AddSingleton<ControllerPageModel>()
             .AddSingleton<SettingsPage>()

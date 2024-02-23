@@ -12,132 +12,95 @@
     Padding="10"
     x:DataType="viewModels:ControllerPageModel"
     Shell.NavBarIsVisible="False">
-    <!--<Grid
-        Padding="10"
-        RowDefinitions="Auto, *"
-        RowSpacing="20">
-        <Label
-            Grid.Row="0"
-            FontSize="30"
-            HorizontalOptions="Start"
-            HorizontalTextAlignment="Center"
-            Text="{Binding Controller.Name}"
-            TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                        Dark={StaticResource OnBackgroundDark}}"
-            VerticalOptions="StartAndExpand"
-            VerticalTextAlignment="Start" />
 
-        <material:ButtonView
-            Grid.Row="0"
-            BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
-                                              Dark={StaticResource PrimaryDark}}"
-            HeightRequest="45"
-            HorizontalOptions="End"
-            VerticalOptions="Center"
-            WidthRequest="45">
+    <RefreshView SizeChanged="OnSizeChanged">
+        <CollectionView
+            Grid.Row="1"
+            FlowDirection="LeftToRight"
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsSource="{Binding SensorsReading}"
+            SelectionMode="None">
 
-            <material:ButtonView.StrokeShape>
-                <RoundRectangle CornerRadius="23" />
-            </material:ButtonView.StrokeShape>
+            <CollectionView.Header>
+                <Label
+                    Margin="0,10,0,5"
+                    FontFamily="GoogleRegular"
+                    FontSize="40"
+                    Text="Home"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}" />
+            </CollectionView.Header>
 
-            <Label
-                FontFamily="FASolid"
-                HorizontalOptions="Center"
-                Text="{Static fa:SolidIconFont.Gear}"
-                TextColor="{AppThemeBinding Light={StaticResource OnPrimary},
-                                            Dark={StaticResource OnPrimaryDark}}"
-                VerticalOptions="Center" />
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    x:Name="gridItemsLayout"
+                    HorizontalItemSpacing="10"
+                    Orientation="Vertical"
+                    VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
 
-        </material:ButtonView>-->
-
-    <CollectionView
-        Grid.Row="1"
-        CanMixGroups="True"
-        CanReorderItems="True"
-        ItemSizingStrategy="MeasureAllItems"
-        ItemsSource="{Binding SensorsReading}"
-        SizeChanged="OnSizeChanged">
-
-        <CollectionView.Header>
-            <Label
-                Margin="0,10,0,5"
-                FontFamily="GoogleRegular"
-                FontSize="40"
-                Text="Home"
-                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                            Dark={StaticResource OnBackgroundDark}}" />
-        </CollectionView.Header>
-
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout
-                x:Name="gridItemsLayout"
-                HorizontalItemSpacing="10"
-                Orientation="Vertical"
-                VerticalItemSpacing="10" />
-        </CollectionView.ItemsLayout>
-
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Border
-                    Padding="15"
-                    x:DataType="models:SensorReading"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
-                                                      Dark={StaticResource SecondaryContainerDark}}"
-                    StrokeThickness="0">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10" />
-                    </Border.StrokeShape>
-
-                    <VerticalStackLayout
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Padding="15"
                         x:DataType="models:SensorReading"
-                        HorizontalOptions="Center"
-                        Spacing="5"
-                        VerticalOptions="Center">
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
+                                                          Dark={StaticResource SecondaryContainerDark}}"
+                        StrokeThickness="0">
 
-                        <HorizontalStackLayout
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout
+                            x:DataType="models:SensorReading"
                             HorizontalOptions="Center"
                             Spacing="5"
                             VerticalOptions="Center">
+
+                            <HorizontalStackLayout
+                                HorizontalOptions="Center"
+                                Spacing="5"
+                                VerticalOptions="Center">
+                                <Label
+                                    FontFamily="GoogleRegular"
+                                    FontSize="23"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Value}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+
+                                <Label
+                                    FontFamily="GoogleRegular"
+                                    FontSize="23"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Unit}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+
+                            </HorizontalStackLayout>
+
                             <Label
                                 FontFamily="GoogleRegular"
-                                FontSize="23"
+                                FontSize="14"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Value}"
+                                Text="{Binding Type, Converter={converters:NameConverter}}"
                                 TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
                                                             Dark={StaticResource OnSecondaryContainerDark}}"
                                 VerticalOptions="Center"
                                 VerticalTextAlignment="Center" />
 
-                            <Label
-                                FontFamily="GoogleRegular"
-                                FontSize="23"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Unit}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center" />
-
-                        </HorizontalStackLayout>
-
-                        <Label
-                            FontFamily="GoogleRegular"
-                            FontSize="14"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding Type, Converter={converters:NameConverter}}"
-                            TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                        Dark={StaticResource OnSecondaryContainerDark}}"
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center" />
-
-                    </VerticalStackLayout>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-    <!--</Grid>-->
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 </ContentPage>

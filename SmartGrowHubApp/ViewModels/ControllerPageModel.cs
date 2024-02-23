@@ -1,16 +1,18 @@
-﻿using SmartGrowHubApp.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SmartGrowHubApp.Model;
 
 namespace SmartGrowHubApp.ViewModels;
 
-public class ControllerPageModel
+public partial class ControllerPageModel : ObservableObject
 {
+    [ObservableProperty]
+    private IEnumerable<SensorReading> _sensorsReading = [];
+
     public ControllerPageModel()
     {
-        Controller = new ControllerModel() { Id = "esp", Name = "ESP32" };
+        Controller = new ControllerModel() { Id = "esp", Name = "SmartGrowHub" };
         Load();
     }
-
-    public IEnumerable<SensorReading> SensorsReading { get; set; }
 
     public ControllerModel Controller { get; }
 

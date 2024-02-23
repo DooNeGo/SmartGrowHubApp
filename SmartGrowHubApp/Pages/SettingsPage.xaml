@@ -7,12 +7,17 @@
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
     Padding="10"
     x:DataType="viewModels:SettingsPageModel"
     Shell.NavBarIsVisible="False">
-    <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
+
+    <CollectionView
+        x:Name="collectionView"
+        ItemsSource="{Binding SettingPageModels}"
+        SelectedItem="{Binding SelectedItem}">
 
         <CollectionView.Header>
             <Label
@@ -32,6 +37,42 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
+                <material:ButtonView
+                    x:DataType="viewModels:SettingPageModel"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
+                                                      Dark={StaticResource SecondaryContainerDark}}"
+                    CommandParameter="{x:Binding Source={x:Reference collectionView},
+                                                 Path=SelectedItem}">
+
+                    <material:ButtonView.StrokeShape>
+                        <RoundRectangle CornerRadius="15" />
+                    </material:ButtonView.StrokeShape>
+
+                    <Grid Padding="5" RowDefinitions="Auto">
+
+                        <Label
+                            BackgroundColor="Transparent"
+                            FontFamily="GoogleRegular"
+                            FontSize="22"
+                            Text="{Binding SettingType, Converter={converters:NameConverter}}"
+                            TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                        Dark={StaticResource OnSecondaryContainerDark}}" />
+
+                        <Label
+                            FontFamily="FASolid"
+                            FontSize="22"
+                            HorizontalOptions="End"
+                            Text="{Static fa:SolidIconFont.AngleRight}"
+                            TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                        Dark={StaticResource OnSecondaryContainerDark}}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </material:ButtonView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <!--<CollectionView.ItemTemplate>
+            <DataTemplate>
                 <Border
                     Padding="15"
                     BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
@@ -42,7 +83,7 @@
                         <RoundRectangle CornerRadius="5" />
                     </Border.StrokeShape>
 
-                    <uranium:ExpanderView x:DataType="models:Setting">
+                    <uranium:ExpanderView x:DataType="viewModels:SettingPageModel">
 
                         <uranium:ExpanderView.Header>
                             <Label
@@ -50,7 +91,7 @@
                                 FontSize="22"
                                 HorizontalOptions="Start"
                                 HorizontalTextAlignment="Start"
-                                Text="{Binding Type, Converter={converters:NameConverter}}"
+                                Text="{Binding SettingType, Converter={converters:NameConverter}}"
                                 TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
                                                             Dark={StaticResource OnSecondaryContainerDark}}"
                                 VerticalOptions="Center"
@@ -81,34 +122,20 @@
                                                 VerticalTextAlignment="Center"
                                                 WidthRequest="110" />
 
-                                            <material:PickerField
-                                                AllowClear="False"
+                                            <Picker
                                                 BackgroundColor="Transparent"
-                                                BorderColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                                              Dark={StaticResource OnSecondaryContainerDark}}"
-                                                CornerRadius="5"
                                                 FlowDirection="LeftToRight"
                                                 FontFamily="GoogleRegular"
                                                 FontSize="18"
                                                 HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Center"
                                                 ItemsSource="{Binding AcceptableValues}"
                                                 SelectedItem="{Binding Value}"
                                                 TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
                                                                             Dark={StaticResource OnSecondaryContainerDark}}"
                                                 VerticalOptions="Center"
-                                                WidthRequest="80">
-                                                <!--<material:PickerField.Content>
-                                                    <HorizontalStackLayout>
-                                                        <Label
-                                                            Grid.Column="0"
-                                                            FontSize="10"
-                                                            Text="{Binding Value, Mode=TwoWay}"
-                                                            TextColor="Black" />
-                                                        <Label Grid.Column="1" Text="{Binding Unit}" />
-                                                    </HorizontalStackLayout>
-
-                                                </material:PickerField.Content>-->
-                                            </material:PickerField>
+                                                VerticalTextAlignment="Center"
+                                                WidthRequest="100" />
 
                                             <Label
                                                 FontFamily="GoogleRegular"
@@ -156,6 +183,7 @@
                     </uranium:ExpanderView>
                 </Border>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
+        </CollectionView.ItemTemplate>-->
+
     </CollectionView>
 </ContentPage>

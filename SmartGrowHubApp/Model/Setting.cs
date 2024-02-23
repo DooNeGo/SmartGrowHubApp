@@ -24,18 +24,14 @@ public enum SettingType
 
 public class Setting
 {
-    [JsonInclude]
-    [JsonPropertyName("Components")]
-    private readonly List<Component> _components = [];
-
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public SettingType Type { get; init; }
 
-    public IEnumerable<Component> Components => _components;
+    public IEnumerable<Component> Components { get; set; } = [];
 
     public Setting AddComponent(Component component)
     {
-        _components.Add(component);
+        Components = Components.Append(component);
 
         return this;
     }

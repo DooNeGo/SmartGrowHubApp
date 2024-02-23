@@ -10,4 +10,9 @@ public partial class SettingsPage : ContentPage
 
         BindingContext = settingsPageModel;
     }
+
+    private void ButtonView_Pressed(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(nameof(SettingPage));
+    }
 }

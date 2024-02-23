@@ -3,40 +3,22 @@
     x:Class="SmartGrowHubApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:local="clr-namespace:SmartGrowHubApp"
     xmlns:pages="clr-namespace:SmartGrowHubApp.Pages"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    FlyoutBackdrop="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                     Dark={StaticResource OnPrimaryContainerDark}}"
     FlyoutBackground="{AppThemeBinding Light={StaticResource PrimaryContainer},
                                        Dark={StaticResource PrimaryContainerDark}}"
     FlyoutBehavior="{OnIdiom Phone=Disabled,
                              Default=Locked}"
     FlyoutWidth="60"
+    Shell.NavBarHasShadow="True"
+    Shell.TabBarForegroundColor="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                                  Dark={StaticResource OnPrimaryContainerDark}}"
     Shell.TabBarIsVisible="{OnIdiom Phone=True,
                                     Default=False}">
-
-    <!--<Shell.FlyoutFooterTemplate>
-        <DataTemplate>
-            <Grid RowDefinitions="68">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                </Grid.GestureRecognizers>
-            </Grid>
-        </DataTemplate>
-    </Shell.FlyoutFooterTemplate>-->
-
-    <!--<Shell.FlyoutContentTemplate>
-        <DataTemplate>
-            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
-
-                <VerticalStackLayout.Effects>
-                    <uranium:BlurEffect Mode="Light" AccentOpacity="0.8"/>
-                </VerticalStackLayout.Effects>
-
-
-
-            </VerticalStackLayout>
-        </DataTemplate>
-    </Shell.FlyoutContentTemplate>-->
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -54,13 +36,29 @@
         <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate pages:ControllerPage}"
-            Icon="{StaticResource HomeIcon}"
-            Route="HomePage" />
+            Route="HomePage">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="FASolid"
+                    Glyph="{x:Static fa:SolidIconFont.House}"
+                    Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
         <ShellContent
             Title="Settings"
             ContentTemplate="{DataTemplate pages:SettingsPage}"
-            Icon="{StaticResource SettingsIcon}"
-            Route="SettingsPage" />
+            Route="SettingsPage">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="FASolid"
+                    Glyph="{x:Static fa:SolidIconFont.Gear}"
+                    Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
+                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+            </ShellContent.Icon>
+        </ShellContent>
     </FlyoutItem>
+
 
 </Shell>

@@ -1,37 +1,47 @@
-﻿using SmartGrowHubApp.Model;
-using SmartGrowHubApp.ViewModels.Abstractions;
+﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using SmartGrowHubApp.Model;
 using System.Collections.ObjectModel;
 
 namespace SmartGrowHubApp.ViewModels;
 
-public class HomePageModel : ViewModelBase
+public partial class HomePageModel : ObservableObject
 {
-    public HomePageModel()
+    private readonly IPopupService _popupService;
+
+    [ObservableProperty]
+    private ObservableCollection<ControllerModel>? _items;
+
+    [ObservableProperty]
+    private ControllerModel? _selectedItem;
+
+    [ObservableProperty]
+    private ObservableCollection<object> _selectedItems = [];
+
+    public HomePageModel(IPopupService popupService)
     {
+        _popupService = popupService;
+
         Load();
 
         if (Items is null)
         {
             throw new NullReferenceException(nameof(Items));
         }
-
-        Items.CollectionChanged += (_, _) => InvokePropertyChanged(nameof(Items));
     }
-
-    public ObservableCollection<ControllerModel>? Items { get; private set; }
-
-    public ControllerModel? SelectedItem { get; set; }
-
-    public IList<object> SelectedItems { get; set; }
 
     public void ClearSelection()
     {
         SelectedItem = null;
         SelectedItems.Clear();
-        SelectionChanged?.Invoke(SelectedItems);
     }
 
-    public event Action<IList<object>>? SelectionChanged;
+    [RelayCommand]
+    private void ShowAddControllerPopup()
+    {
+        _popupService.ShowPopupAsync<AddControllerPageModel>();
+    }
 
     private void Load()
     {

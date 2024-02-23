@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<mopups:PopupPage
+<toolkit:Popup
     x:Class="SmartGrowHubApp.Pages.AddControllerPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
-    xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
-    x:DataType="viewModels:AddControllerPageModel"
-    BackgroundColor="#80000000"
-    CloseWhenBackgroundIsClicked="True">
-
-    <mopups:PopupPage.Animation>
-        <mopupsanim:MoveAnimation
-            DurationIn="300"
-            DurationOut="250"
-            PositionIn="Bottom" />
-    </mopups:PopupPage.Animation>
+    x:DataType="viewModels:AddControllerPageModel">
 
     <Border
         Grid.Row="1"
-        BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryContainer},
-                                          Dark={StaticResource PrimaryContainerDark}}"
+        BackgroundColor="{AppThemeBinding Light={StaticResource Background},
+                                          Dark={StaticResource BackgroundDark}}"
         HorizontalOptions="FillAndExpand"
         VerticalOptions="CenterAndExpand">
 
@@ -57,8 +47,7 @@
                 BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
                                                   Dark={StaticResource PrimaryDark}}"
                 HorizontalOptions="CenterAndExpand"
-                Pressed="ButtonView_Pressed"
-                PressedCommand="{Binding AddCommand}"
+                PressedCommand="{Binding AddControllerCommand}"
                 VerticalOptions="Center"
                 WidthRequest="150">
 
@@ -75,6 +64,4 @@
             </material:ButtonView>
         </VerticalStackLayout>
     </Border>
-
-
-</mopups:PopupPage>
+</toolkit:Popup>

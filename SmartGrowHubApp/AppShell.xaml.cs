@@ -1,4 +1,6 @@
-﻿namespace SmartGrowHubApp;
+﻿using SmartGrowHubApp.Pages;
+
+namespace SmartGrowHubApp;
 
 public partial class AppShell
 {
@@ -6,9 +8,6 @@ public partial class AppShell
     {
         InitializeComponent();
 
-        //if (DeviceInfo.Idiom == DeviceIdiom.Phone)
-        //{
-        //    Current.CurrentItem = PhoneTabBar;
-        //}
+        Routing.RegisterRoute(nameof(SettingPage), typeof(SettingPage));
     }
 }

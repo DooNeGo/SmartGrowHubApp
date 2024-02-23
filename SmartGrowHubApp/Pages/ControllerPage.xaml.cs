@@ -13,6 +13,6 @@ public partial class ControllerPage
 
     private void OnSizeChanged(object? sender, EventArgs e)
     {
-        gridItemsLayout.Span = (int)(Width / 200);
+        gridItemsLayout.Span = (int)(Width / 180);
     }
 }
