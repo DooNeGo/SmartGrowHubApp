@@ -4,5 +4,5 @@ namespace SmartGrowHubApp.Repository;
 
 public interface ISensorsReadingRepository
 {
-    public IEnumerable<SensorReading> GetSensorsReading();
+    public IEnumerable<SensorReading> GetSensorsReading(ControllerModel controller);
 }
