@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microcharts;
 using SkiaSharp;
 using SmartGrowHubApp.Model;
-using System.Drawing;
 
 namespace SmartGrowHubApp.ViewModels;
 

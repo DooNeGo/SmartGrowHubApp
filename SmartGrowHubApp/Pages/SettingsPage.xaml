@@ -44,7 +44,7 @@
                     </material:ButtonView.StrokeShape>
 
                     <Grid
-                        Padding="10"
+                        Padding="5"
                         x:DataType="models:Setting"
                         RowDefinitions="Auto">
                         <Label
