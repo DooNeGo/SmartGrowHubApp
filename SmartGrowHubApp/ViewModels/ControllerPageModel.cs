@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SmartGrowHubApp.Model;
 
 namespace SmartGrowHubApp.ViewModels;
@@ -8,9 +9,12 @@ public partial class ControllerPageModel : ObservableObject
     [ObservableProperty]
     private IEnumerable<SensorReading> _sensorsReading = [];
 
+    [ObservableProperty]
+    private SensorReading? _selectedItem;
+
     public ControllerPageModel()
     {
-        Controller = new ControllerModel() { Id = "esp", Name = "SmartGrowHub" };
+        Controller = new ControllerModel() { Id = "esp", Name = "Smart Grow Hub" };
         Load();
     }
 
@@ -26,5 +30,12 @@ public partial class ControllerPageModel : ObservableObject
             new SensorReading() { SensorId = 2, Type = SensorType.AirTemperature, Value = 25.3, Unit = "C" },
             new SensorReading() { SensorId = 2, Type = SensorType.AirPressure, Value = 101.2, Unit = "kPa" },
         ];
+    }
+
+    [RelayCommand]
+    private void ShowSensorReadingPage(SensorReading sensorReading)
+    {
+        SelectedItem = sensorReading;
+        Shell.Current.GoToAsync(nameof(SensorReadingPageModel));
     }
 }

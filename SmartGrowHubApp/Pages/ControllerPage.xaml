@@ -7,13 +7,19 @@
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
     Title="Home"
     Padding="10"
     x:DataType="viewModels:ControllerPageModel"
     Shell.NavBarIsVisible="False">
 
-    <RefreshView SizeChanged="OnSizeChanged">
+    <RefreshView
+        BackgroundColor="{AppThemeBinding Light={StaticResource Background},
+                                          Dark={StaticResource BackgroundDark}}"
+        RefreshColor="{AppThemeBinding Light={StaticResource Primary},
+                                       Dark={StaticResource PrimaryDark}}"
+        SizeChanged="OnSizeChanged">
         <CollectionView
             Grid.Row="1"
             FlowDirection="LeftToRight"
@@ -41,16 +47,17 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border
+                    <material:ButtonView
                         Padding="15"
                         x:DataType="models:SensorReading"
                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
                                                           Dark={StaticResource SecondaryContainerDark}}"
-                        StrokeThickness="0">
+                        StrokeThickness="0"
+                        Tapped="ButtonView_Tapped">
 
-                        <Border.StrokeShape>
+                        <material:ButtonView.StrokeShape>
                             <RoundRectangle CornerRadius="15" />
-                        </Border.StrokeShape>
+                        </material:ButtonView.StrokeShape>
 
                         <VerticalStackLayout
                             x:DataType="models:SensorReading"
@@ -98,7 +105,7 @@
                                 VerticalTextAlignment="Center" />
 
                         </VerticalStackLayout>
-                    </Border>
+                    </material:ButtonView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

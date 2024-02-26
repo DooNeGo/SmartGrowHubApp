@@ -4,77 +4,94 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
-    Title="SettingPage"
+    Title="{Binding SettingType, Converter={converters:NameConverter}}"
+    Padding="10"
     x:DataType="viewModels:SettingPageModel">
-    <CollectionView ItemsSource="{Binding Components}" SelectionMode="None">
-        <CollectionView.Header>
-            <Label
-                Margin="0,10,0,5"
-                FontFamily="GoogleRegular"
-                FontSize="40"
-                HorizontalOptions="Start"
-                Text="{Binding SettingType}"
-                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                            Dark={StaticResource OnBackgroundDark}}"
-                VerticalOptions="Start" />
-        </CollectionView.Header>
 
+    <CollectionView
+        BackgroundColor="Transparent"
+        ItemsSource="{Binding Components}"
+        SelectionMode="None">
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Grid x:DataType="models:Component" RowDefinitions="Auto">
-                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer}, Dark={StaticResource SecondaryContainerDark}}" StrokeThickness="0">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource ErrorContainer},
+                                                                      Dark={StaticResource ErrorContainerDark}}"
+                                    Clicked="SwipeItem_Clicked"
+                                    Text="Delete">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource
+                                            FontFamily="FARegular"
+                                            Glyph="{Static fa:RegularIconFont.TrashCan}"
+                                            Color="{AppThemeBinding Light={StaticResource OnErrorContainer},
+                                                                    Dark={StaticResource OnErrorContainerDark}}" />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
 
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
-                        </Border.StrokeShape>
+                        <Border BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer}, Dark={StaticResource SecondaryContainerDark}}" StrokeThickness="0">
 
-                        <HorizontalStackLayout>
-                            <Label
-                                Margin="30,0,0,0"
-                                FontFamily="GoogleRegular"
-                                FontSize="18"
-                                HorizontalOptions="Start"
-                                HorizontalTextAlignment="Start"
-                                Text="{Binding Type, Converter={converters:NameConverter}}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center"
-                                WidthRequest="120" />
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="15" />
+                            </Border.StrokeShape>
 
-                            <Picker
-                                BackgroundColor="Transparent"
-                                FlowDirection="LeftToRight"
-                                FontFamily="GoogleRegular"
-                                FontSize="18"
-                                HorizontalOptions="Center"
-                                ItemsSource="{Binding AcceptableValues}"
-                                SelectedItem="{Binding Value}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                VerticalOptions="Center"
-                                WidthRequest="100" />
+                            <HorizontalStackLayout Padding="5">
+                                <Label
+                                    Margin="10,0,0,0"
+                                    FontFamily="GoogleRegular"
+                                    FontSize="20"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding Type, Converter={converters:NameConverter}}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="120" />
 
-                            <Label
-                                FontFamily="GoogleRegular"
-                                FontSize="18"
-                                HorizontalOptions="Start"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Unit}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center"
-                                WidthRequest="40" />
-                        </HorizontalStackLayout>
-                    </Border>
+                                <Picker
+                                    BackgroundColor="Transparent"
+                                    FontFamily="GoogleRegular"
+                                    FontSize="20"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    ItemsSource="{Binding AcceptableValues}"
+                                    SelectedItem="{Binding Value}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    TitleColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                                 Dark={StaticResource OnSecondaryContainerDark}}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="End"
+                                    WidthRequest="100" />
+
+                                <Label
+                                    FontFamily="GoogleRegular"
+                                    FontSize="20"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Unit}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="40" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </SwipeView>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

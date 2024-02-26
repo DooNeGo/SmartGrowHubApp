@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace SmartGrowHubApp.Model;
+
 public enum ComponentType
 {
     Time,
@@ -12,7 +13,7 @@ public enum ComponentType
     Count
 }
 
-public struct Component
+public class Component
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public required ComponentType Type { get; set; }

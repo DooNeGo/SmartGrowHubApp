@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using SmartGrowHubApp.Pages;
 using SmartGrowHubApp.ViewModels;
@@ -15,6 +16,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseUraniumUI()
+            .UseMicrocharts()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
             .UseUraniumUIMaterial()
@@ -26,10 +28,10 @@ public static class MauiProgram
             });
 
         builder.Services
-            .AddSingleton<ControllerPage>()
-            .AddSingleton<ControllerPageModel>()
-            .AddSingleton<SettingsPage>()
-            .AddSingleton<SettingsPageModel>();
+            .AddSingletonWithShellRoute<ControllerPage, ControllerPageModel>(nameof(ControllerPageModel))
+            .AddSingletonWithShellRoute<SettingsPage, SettingsPageModel>(nameof(SettingsPageModel))
+            .AddTransientWithShellRoute<SettingPage, SettingPageModel>(nameof(SettingPageModel))
+            .AddTransientWithShellRoute<SensorReadingPage, SensorReadingPageModel>(nameof(SensorReadingPageModel));
 
 #if DEBUG
         builder.Logging.AddDebug();

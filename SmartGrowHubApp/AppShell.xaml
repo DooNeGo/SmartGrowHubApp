@@ -33,29 +33,23 @@
     </Shell.ItemTemplate>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent
-            Title="Home"
-            ContentTemplate="{DataTemplate pages:ControllerPage}"
-            Route="HomePage">
+        <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:ControllerPage}">
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.House}"
-                    Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
-                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+                    Color="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                            Dark={StaticResource OnSecondaryContainerDark}}" />
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent
-            Title="Settings"
-            ContentTemplate="{DataTemplate pages:SettingsPage}"
-            Route="SettingsPage">
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate pages:SettingsPage}">
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.Gear}"
-                    Color="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
-                                            Dark={StaticResource OnPrimaryContainerDark}}" />
+                    Color="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                            Dark={StaticResource OnSecondaryContainerDark}}" />
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>

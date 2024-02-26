@@ -14,11 +14,7 @@
     x:DataType="viewModels:SettingsPageModel"
     Shell.NavBarIsVisible="False">
 
-    <CollectionView
-        x:Name="collectionView"
-        ItemsSource="{Binding SettingPageModels}"
-        SelectedItem="{Binding SelectedItem}">
-
+    <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
         <CollectionView.Header>
             <Label
                 Margin="0,10,0,5"
@@ -32,32 +28,32 @@
         </CollectionView.Header>
 
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <material:ButtonView
-                    x:DataType="viewModels:SettingPageModel"
                     BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
                                                       Dark={StaticResource SecondaryContainerDark}}"
-                    CommandParameter="{x:Binding Source={x:Reference collectionView},
-                                                 Path=SelectedItem}">
+                    StrokeThickness="0"
+                    Tapped="ButtonView_Pressed">
 
                     <material:ButtonView.StrokeShape>
                         <RoundRectangle CornerRadius="15" />
                     </material:ButtonView.StrokeShape>
 
-                    <Grid Padding="5" RowDefinitions="Auto">
-
+                    <Grid
+                        Padding="10"
+                        x:DataType="models:Setting"
+                        RowDefinitions="Auto">
                         <Label
                             BackgroundColor="Transparent"
                             FontFamily="GoogleRegular"
                             FontSize="22"
-                            Text="{Binding SettingType, Converter={converters:NameConverter}}"
+                            Text="{Binding Type, Converter={converters:NameConverter}}"
                             TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
                                                         Dark={StaticResource OnSecondaryContainerDark}}" />
-
                         <Label
                             FontFamily="FASolid"
                             FontSize="22"
@@ -70,120 +66,5 @@
                 </material:ButtonView>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-
-        <!--<CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Border
-                    Padding="15"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
-                                                      Dark={StaticResource SecondaryContainerDark}}"
-                    StrokeThickness="0">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="5" />
-                    </Border.StrokeShape>
-
-                    <uranium:ExpanderView x:DataType="viewModels:SettingPageModel">
-
-                        <uranium:ExpanderView.Header>
-                            <Label
-                                FontFamily="GoogleRegular"
-                                FontSize="22"
-                                HorizontalOptions="Start"
-                                HorizontalTextAlignment="Start"
-                                Text="{Binding SettingType, Converter={converters:NameConverter}}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center" />
-                        </uranium:ExpanderView.Header>
-
-                        <CollectionView ItemsSource="{Binding Components}">
-
-                            <CollectionView.ItemsLayout>
-                                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
-                            </CollectionView.ItemsLayout>
-
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid x:DataType="models:Component" RowDefinitions="Auto">
-                                        <HorizontalStackLayout>
-
-                                            <Label
-                                                Margin="30,0,0,0"
-                                                FontFamily="GoogleRegular"
-                                                FontSize="18"
-                                                HorizontalOptions="Start"
-                                                HorizontalTextAlignment="Start"
-                                                Text="{Binding Type, Converter={converters:NameConverter}}"
-                                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                                VerticalOptions="Center"
-                                                VerticalTextAlignment="Center"
-                                                WidthRequest="110" />
-
-                                            <Picker
-                                                BackgroundColor="Transparent"
-                                                FlowDirection="LeftToRight"
-                                                FontFamily="GoogleRegular"
-                                                FontSize="18"
-                                                HorizontalOptions="Center"
-                                                HorizontalTextAlignment="Center"
-                                                ItemsSource="{Binding AcceptableValues}"
-                                                SelectedItem="{Binding Value}"
-                                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                                VerticalOptions="Center"
-                                                VerticalTextAlignment="Center"
-                                                WidthRequest="100" />
-
-                                            <Label
-                                                FontFamily="GoogleRegular"
-                                                FontSize="18"
-                                                HorizontalOptions="Start"
-                                                HorizontalTextAlignment="Center"
-                                                Text="{Binding Unit}"
-                                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                                            Dark={StaticResource OnSecondaryContainerDark}}"
-                                                VerticalOptions="Center"
-                                                VerticalTextAlignment="Center"
-                                                WidthRequest="40" />
-                                        </HorizontalStackLayout>
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-
-                            <CollectionView.Footer>
-                                <material:ButtonView
-                                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
-                                                                      Dark={StaticResource PrimaryDark}}"
-                                    HorizontalOptions="End"
-                                    VerticalOptions="Center">
-
-                                    <material:ButtonView.StrokeShape>
-                                        <RoundRectangle CornerRadius="15" />
-                                    </material:ButtonView.StrokeShape>
-
-                                    <Label
-                                        FontFamily="FARegular"
-                                        FontSize="17"
-                                        HeightRequest="30"
-                                        HorizontalOptions="Center"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Static fa:RegularIconFont.Plus}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnPrimary},
-                                                                    Dark={StaticResource OnPrimaryDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center"
-                                        WidthRequest="30" />
-                                </material:ButtonView>
-                            </CollectionView.Footer>
-
-                        </CollectionView>
-                    </uranium:ExpanderView>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>-->
-
     </CollectionView>
 </ContentPage>
