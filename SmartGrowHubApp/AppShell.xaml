@@ -9,8 +9,8 @@
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     FlyoutBackdrop="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
                                      Dark={StaticResource OnPrimaryContainerDark}}"
-    FlyoutBackground="{AppThemeBinding Light={StaticResource PrimaryContainer},
-                                       Dark={StaticResource PrimaryContainerDark}}"
+    FlyoutBackground="{AppThemeBinding Light={StaticResource White},
+                                       Dark={StaticResource Gray900}}"
     FlyoutBehavior="{OnIdiom Phone=Disabled,
                              Default=Locked}"
     FlyoutWidth="60"
@@ -38,8 +38,7 @@
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.House}"
-                    Color="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                            Dark={StaticResource OnSecondaryContainerDark}}" />
+                    Color="{StaticResource PrimaryDark}" />
             </ShellContent.Icon>
         </ShellContent>
 
@@ -48,8 +47,7 @@
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.Gear}"
-                    Color="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                            Dark={StaticResource OnSecondaryContainerDark}}" />
+                    Color="{StaticResource PrimaryDark}" />
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>

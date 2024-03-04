@@ -10,12 +10,12 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
-    Padding="10"
+    Title="Settings"
     x:DataType="viewModels:SettingsPageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
 
     <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
-        <CollectionView.Header>
+        <!--<CollectionView.Header>
             <Label
                 Margin="0,10,0,5"
                 FontFamily="GoogleRegular"
@@ -25,7 +25,7 @@
                 TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                             Dark={StaticResource OnBackgroundDark}}"
                 VerticalOptions="Start" />
-        </CollectionView.Header>
+        </CollectionView.Header>-->
 
         <CollectionView.ItemsLayout>
             <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
@@ -33,37 +33,31 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <material:ButtonView
-                    BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
-                                                      Dark={StaticResource SecondaryContainerDark}}"
-                    StrokeThickness="0"
-                    Tapped="ButtonView_Pressed">
+                <Grid
+                    Padding="5"
+                    x:DataType="models:Setting"
+                    RowDefinitions="Auto">
 
-                    <material:ButtonView.StrokeShape>
-                        <RoundRectangle CornerRadius="15" />
-                    </material:ButtonView.StrokeShape>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Grid.GestureRecognizers>
 
-                    <Grid
-                        Padding="5"
-                        x:DataType="models:Setting"
-                        RowDefinitions="Auto">
-                        <Label
-                            BackgroundColor="Transparent"
-                            FontFamily="GoogleRegular"
-                            FontSize="22"
-                            Text="{Binding Type, Converter={converters:NameConverter}}"
-                            TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                        Dark={StaticResource OnSecondaryContainerDark}}" />
-                        <Label
-                            FontFamily="FASolid"
-                            FontSize="22"
-                            HorizontalOptions="End"
-                            Text="{Static fa:SolidIconFont.AngleRight}"
-                            TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                        Dark={StaticResource OnSecondaryContainerDark}}"
-                            VerticalOptions="Center" />
-                    </Grid>
-                </material:ButtonView>
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="GoogleRegular"
+                        FontSize="20"
+                        Text="{Binding Type, Converter={converters:NameConverter}}"
+                        TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
+                                                    Dark={StaticResource Gray100}}" />
+                    <Label
+                        FontFamily="FASolid"
+                        FontSize="17"
+                        HorizontalOptions="End"
+                        Text="{Static fa:SolidIconFont.AngleRight}"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                    Dark={StaticResource Gray500}}"
+                        VerticalOptions="Center" />
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

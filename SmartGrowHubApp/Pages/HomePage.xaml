@@ -8,8 +8,9 @@
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
+    Title="Home"
     x:DataType="viewModels:HomePageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
 
     <Grid
         Padding="10"

@@ -3,16 +3,7 @@
     x:Class="SmartGrowHubApp.Pages.SensorReadingPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:charts="clr-namespace:Microcharts;assembly=Microcharts.Maui"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
-    xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
     Title="{Binding SensorReading.Type, Converter={converters:NameConverter}}"
-    x:DataType="viewModels:SensorReadingPageModel">
-
-    <micro:ChartView>
-        <micro:ChartView.Chart>
-            <charts:LineChart x:Name="MyChart" />
-        </micro:ChartView.Chart>
-    </micro:ChartView>
-</ContentPage>
+    x:DataType="viewModels:SensorReadingPageModel" />

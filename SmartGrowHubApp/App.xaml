@@ -8,14 +8,12 @@
     xmlns:u="http://schemas.enisn-projects.io/dotnet/maui/uraniumui">
     <Application.Resources>
         <ResourceDictionary>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="appColors" Source="Resources/Styles/Colors.xaml" />
-                <u:ColorResource />
+                <material:ColorResource />
                 <ResourceDictionary x:Name="appStyles" Source="Resources/Styles/Styles.xaml" />
                 <material:StyleResource BasedOn="{x:Reference appStyles}" ColorsOverride="{x:Reference appColors}" />
             </ResourceDictionary.MergedDictionaries>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

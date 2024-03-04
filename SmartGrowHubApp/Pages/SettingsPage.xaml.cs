@@ -21,4 +21,12 @@ public partial class SettingsPage : ContentPage
             _pageModel.ShowSettingPageCommand.Execute(item.BindingContext);
         }
     }
+
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject item)
+        {
+            _pageModel.ShowSettingPageCommand.Execute(item.BindingContext);
+        }
+    }
 }

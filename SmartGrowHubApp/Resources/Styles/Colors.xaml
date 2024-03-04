@@ -40,7 +40,7 @@
     <Color x:Key="SurfaceVariant">#DDE5DB</Color>
     <Color x:Key="SurfaceVariantDark">#414942</Color>
 
-    <Color x:Key="Background">#FBFDF8</Color>
+    <Color x:Key="Background">#FAFAFA</Color>
     <Color x:Key="BackgroundDark">#191C19</Color>
 
     <Color x:Key="Error">#BA1A1A</Color>

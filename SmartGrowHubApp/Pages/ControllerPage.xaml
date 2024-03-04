@@ -12,14 +12,9 @@
     Title="Home"
     Padding="10"
     x:DataType="viewModels:ControllerPageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
 
-    <RefreshView
-        BackgroundColor="{AppThemeBinding Light={StaticResource Background},
-                                          Dark={StaticResource BackgroundDark}}"
-        RefreshColor="{AppThemeBinding Light={StaticResource Primary},
-                                       Dark={StaticResource PrimaryDark}}"
-        SizeChanged="OnSizeChanged">
+    <RefreshView RefreshColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" SizeChanged="OnSizeChanged">
         <CollectionView
             Grid.Row="1"
             FlowDirection="LeftToRight"
@@ -27,7 +22,7 @@
             ItemsSource="{Binding SensorsReading}"
             SelectionMode="None">
 
-            <CollectionView.Header>
+            <!--<CollectionView.Header>
                 <Label
                     Margin="0,10,0,5"
                     FontFamily="GoogleRegular"
@@ -35,7 +30,7 @@
                     Text="Home"
                     TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                                 Dark={StaticResource OnBackgroundDark}}" />
-            </CollectionView.Header>
+            </CollectionView.Header>-->
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
@@ -47,17 +42,20 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <material:ButtonView
+                    <Border
                         Padding="15"
                         x:DataType="models:SensorReading"
                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
                                                           Dark={StaticResource SecondaryContainerDark}}"
-                        StrokeThickness="0"
-                        Tapped="ButtonView_Tapped">
+                        StrokeThickness="0">
 
-                        <material:ButtonView.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Border.GestureRecognizers>
+
+                        <Border.StrokeShape>
                             <RoundRectangle CornerRadius="15" />
-                        </material:ButtonView.StrokeShape>
+                        </Border.StrokeShape>
 
                         <VerticalStackLayout
                             x:DataType="models:SensorReading"
@@ -105,7 +103,7 @@
                                 VerticalTextAlignment="Center" />
 
                         </VerticalStackLayout>
-                    </material:ButtonView>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

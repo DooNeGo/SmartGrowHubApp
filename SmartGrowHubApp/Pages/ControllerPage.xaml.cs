@@ -19,7 +19,7 @@ public partial class ControllerPage
         gridItemsLayout.Span = (int)(Width / 180);
     }
 
-    private void ButtonView_Tapped(object sender, EventArgs e)
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         if (sender is BindableObject item)
         {

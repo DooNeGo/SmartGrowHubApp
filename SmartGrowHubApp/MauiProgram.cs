@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
-using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using SmartGrowHubApp.Pages;
 using SmartGrowHubApp.ViewModels;
@@ -16,7 +15,6 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseUraniumUI()
-            .UseMicrocharts()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
             .UseUraniumUIMaterial()
