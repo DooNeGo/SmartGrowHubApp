@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using SmartGrowHubApp.Model;
 
-namespace SmartGrowHubApp.ViewModels;
+namespace SmartGrowHubApp.ViewModels.ControllerPageModels;
 
 public partial class SensorReadingPageModel : ObservableObject
 {
@@ -17,7 +17,7 @@ public partial class SensorReadingPageModel : ObservableObject
         Load();
     }
 
-    public SensorReading SensorReading { get; }
+    public SensorReadingModel SensorReading { get; }
 
     private void Load()
     {

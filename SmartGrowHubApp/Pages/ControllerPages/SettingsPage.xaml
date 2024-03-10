@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartGrowHubApp.Pages.ControllerPages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
+    Title="Settings"
+    x:DataType="viewModels:SettingsPageModel"
+    Shell.NavBarIsVisible="False"
+    Style="{StaticResource DefaultPageStyle}">
+
+    <Grid RowDefinitions="*">
+        <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
+            <CollectionView.Header>
+                <Label
+                    Margin="0,15,0,5"
+                    FontAttributes="Bold"
+                    FontFamily="GoogleRegular"
+                    FontSize="35"
+                    HorizontalOptions="Start"
+                    Text="Settings"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Start" />
+
+            </CollectionView.Header>
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Padding="15"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                                          Dark={StaticResource ContainerDark}}"
+                        StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15" />
+                        </Border.StrokeShape>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Border.GestureRecognizers>
+
+                        <Grid x:DataType="observables:SettingObservable" RowDefinitions="Auto">
+                            <Label
+                                Margin="5,0,0,0"
+                                FontFamily="GoogleRegular"
+                                FontSize="18"
+                                Text="{Binding Type, Converter={converters:NameConverter}}"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray900},
+                                                            Dark={StaticResource Gray100}}" />
+
+                            <Label
+                                Margin="0,0,25,0"
+                                FontFamily="GoogleRegular"
+                                FontSize="16"
+                                HorizontalOptions="End"
+                                Text="{Binding PreviewValue}"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                            Dark={StaticResource Gray500}}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                FontFamily="FASolid"
+                                FontSize="16"
+                                HorizontalOptions="End"
+                                Text="{Static fa:SolidIconFont.AngleRight}"
+                                TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                            Dark={StaticResource Gray500}}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

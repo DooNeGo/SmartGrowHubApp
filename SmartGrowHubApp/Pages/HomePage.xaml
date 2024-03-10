@@ -10,7 +10,8 @@
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
     Title="Home"
     x:DataType="viewModels:HomePageModel"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="True"
+    Style="{StaticResource DefaultPageStyle}">
 
     <Grid
         Padding="10"

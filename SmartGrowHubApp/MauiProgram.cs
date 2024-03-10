@@ -2,7 +2,10 @@
 using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
 using SmartGrowHubApp.Pages;
+using SmartGrowHubApp.Pages.ControllerPages;
+using SmartGrowHubApp.Services;
 using SmartGrowHubApp.ViewModels;
+using SmartGrowHubApp.ViewModels.ControllerPageModels;
 using UraniumUI;
 
 namespace SmartGrowHubApp;
@@ -26,9 +29,11 @@ public static class MauiProgram
             });
 
         builder.Services
+            .AddSingleton<ISettingsService, SettingsService>()
             .AddSingletonWithShellRoute<ControllerPage, ControllerPageModel>(nameof(ControllerPageModel))
             .AddSingletonWithShellRoute<SettingsPage, SettingsPageModel>(nameof(SettingsPageModel))
             .AddTransientWithShellRoute<SettingPage, SettingPageModel>(nameof(SettingPageModel))
+            .AddTransientWithShellRoute<SettingModeSwitchPage, SettingModeSwitchPageModel>(nameof(SettingModeSwitchPageModel))
             .AddTransientWithShellRoute<SensorReadingPage, SensorReadingPageModel>(nameof(SensorReadingPageModel));
 
 #if DEBUG

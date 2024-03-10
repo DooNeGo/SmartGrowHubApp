@@ -3,7 +3,7 @@
 namespace SmartGrowHubApp.Repository;
 public class SensorsReadingRepository : ISensorsReadingRepository
 {
-    public IEnumerable<SensorReading> GetSensorsReading(ControllerModel controller)
+    public IEnumerable<SensorReadingModel> GetSensorsReading(ControllerModel controller)
     {
         throw new NotImplementedException();
     }

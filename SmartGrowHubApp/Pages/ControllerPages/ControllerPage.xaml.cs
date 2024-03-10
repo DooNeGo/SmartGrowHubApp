@@ -1,8 +1,8 @@
-using SmartGrowHubApp.ViewModels;
+using SmartGrowHubApp.ViewModels.ControllerPageModels;
 
-namespace SmartGrowHubApp.Pages;
+namespace SmartGrowHubApp.Pages.ControllerPages;
 
-public partial class ControllerPage
+public partial class ControllerPage : ContentPage
 {
     private readonly ControllerPageModel _pageModel;
 
@@ -16,7 +16,7 @@ public partial class ControllerPage
 
     private void OnSizeChanged(object? sender, EventArgs e)
     {
-        gridItemsLayout.Span = (int)(Width / 180);
+        gridItemsLayout.Span = (int)(Width / 170);
     }
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)

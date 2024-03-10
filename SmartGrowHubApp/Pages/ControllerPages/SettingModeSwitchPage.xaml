@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartGrowHubApp.Pages.ControllerPages.SettingModeSwitchPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:selectors="clr-namespace:SmartGrowHubApp.DataTemplateSelectors"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
+    Title="Mode"
+    x:DataType="viewModels:SettingModeSwitchPageModel"
+    Style="{StaticResource DefaultPageStyle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IndexToVisibilityConverter x:Key="IndexToVisibilityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Border
+        Padding="20,5,20,5"
+        BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                          Dark={StaticResource ContainerDark}}"
+        HorizontalOptions="Center"
+        StrokeThickness="0"
+        VerticalOptions="Start">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="15" />
+        </Border.StrokeShape>
+
+        <!--<ListView
+            x:Name="listView"
+            ItemSelected="ListView_ItemSelected"
+            ItemsSource="{Static viewModels:SettingPageModel.ModeValues}"
+            SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <selectors:LastItemSpecialTemplateSelector>
+                    <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout x:Name="verticalStack" Spacing="5">
+                                <Grid RowDefinitions="Auto">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SetSettingModeCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Tapped="TapGestureRecognizer_Tapped" />
+                                    </Grid.GestureRecognizers>
+
+                                    <Label
+                                        FontFamily="GoogleRegular"
+                                        FontSize="18"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        x:Name="checkMark"
+                                        FontFamily="FASolid"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="Center"
+                                        IsVisible="False"
+                                        Text="{Static fa:SolidIconFont.Check}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+
+                                <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                    <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout x:Name="verticalStack">
+                                <Grid RowDefinitions="Auto">
+                                    <Label
+                                        FontFamily="GoogleRegular"
+                                        FontSize="18"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        FontFamily="FASolid"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Static fa:SolidIconFont.Check}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                </selectors:LastItemSpecialTemplateSelector>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+        <CollectionView
+            x:Name="collectionView"
+            HorizontalOptions="Center"
+            ItemsSource="{Static viewModels:SettingPageModel.ModeValues}"
+            SelectionChanged="CollectionView_SelectionChanged"
+            VerticalOptions="Start">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <selectors:LastItemSpecialTemplateSelector>
+                    <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout x:Name="verticalStack" Spacing="5">
+
+                                <Grid Padding="5" RowDefinitions="Auto">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SetSettingModeCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Tapped="TapGestureRecognizer_Tapped" />
+                                    </Grid.GestureRecognizers>
+
+                                    <Label
+                                        FontFamily="GoogleRegular"
+                                        FontSize="18"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        x:Name="checkMark"
+                                        FontFamily="FASolid"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="Center"
+                                        IsVisible="False"
+                                        Text="{Static fa:SolidIconFont.Check}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+
+                                <BoxView
+                                    HeightRequest="0.5"
+                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=ItemsSource.Count, Converter={StaticResource IndexToVisibilityConverter}, ConverterParameter={Binding .}}"
+                                    Color="{AppThemeBinding Light={StaticResource Gray200},
+                                                            Dark={StaticResource Gray600}}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                    <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout x:Name="verticalStack">
+                                <Grid RowDefinitions="Auto">
+                                    <Label
+                                        FontFamily="GoogleRegular"
+                                        FontSize="18"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        FontFamily="FASolid"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Static fa:SolidIconFont.Check}"
+                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                    Dark={StaticResource OnBackgroundDark}}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                </selectors:LastItemSpecialTemplateSelector>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Border>
+</ContentPage>

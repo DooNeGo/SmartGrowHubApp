@@ -15,7 +15,7 @@ public enum SensorType
     Illumination
 }
 
-public class SensorReading
+public class SensorReadingModel
 {
     public int SensorId { get; set; }
 

@@ -1,4 +1,5 @@
 using SmartGrowHubApp.ViewModels;
+using SmartGrowHubApp.ViewModels.ControllerPageModels;
 
 namespace SmartGrowHubApp.Pages;
 
@@ -21,7 +22,7 @@ public partial class HomePage : ContentPage
     {
         if (e.CurrentSelection.Count > 0)
         {
-            Shell.Current.GoToAsync(nameof(ControllerPage));
+            Shell.Current.GoToAsync(nameof(ControllerPageModel));
         }
     }
 }

@@ -19,6 +19,8 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
+    <Color x:Key="DividerColorDark">#2F2F30</Color>
+
     <Color x:Key="Primary">#006D3C</Color>
     <Color x:Key="PrimaryDark">#00E384</Color>
     <Color x:Key="PrimaryContainer">#5AFFA1</Color>
@@ -40,8 +42,11 @@
     <Color x:Key="SurfaceVariant">#DDE5DB</Color>
     <Color x:Key="SurfaceVariantDark">#414942</Color>
 
-    <Color x:Key="Background">#FAFAFA</Color>
-    <Color x:Key="BackgroundDark">#191C19</Color>
+    <Color x:Key="Background">#F2F2F7</Color>
+    <Color x:Key="BackgroundDark">#000000</Color>
+
+    <Color x:Key="Container">#FFFFFF</Color>
+    <Color x:Key="ContainerDark">#1C1C1E</Color>
 
     <Color x:Key="Error">#BA1A1A</Color>
     <Color x:Key="ErrorDark">#FFB4AB</Color>

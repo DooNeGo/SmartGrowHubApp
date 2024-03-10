@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="SmartGrowHubApp.Controls.ComponentControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
+    xmlns:local="clr-namespace:SmartGrowHubApp.Controls"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
+    x:DataType="local:ComponentControl">
+
+    <Border
+        Padding="5"
+        BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                          Dark={StaticResource ContainerDark}}"
+        StrokeThickness="0">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="15" />
+        </Border.StrokeShape>
+
+        <Grid RowDefinitions="Auto">
+            <Label
+                Margin="10,0,0,0"
+                FontFamily="GoogleRegular"
+                FontSize="20"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Text="{Binding Title}"
+                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                            Dark={StaticResource OnBackgroundDark}}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center"
+                WidthRequest="120" />
+
+            <!--<ContentView />-->
+
+            <Picker
+                Margin="0,0,10,0"
+                BackgroundColor="Transparent"
+                FontFamily="GoogleRegular"
+                FontSize="20"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="Center"
+                SelectedItem="{Binding Component.Value}"
+                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                            Dark={StaticResource OnBackgroundDark}}"
+                TitleColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                             Dark={StaticResource OnBackgroundDark}}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center"
+                WidthRequest="100" />
+
+            <Label
+                Margin="0,0,5,0"
+                FontFamily="GoogleRegular"
+                FontSize="20"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Component.Unit}"
+                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                            Dark={StaticResource OnBackgroundDark}}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center"
+                WidthRequest="40" />
+        </Grid>
+    </Border>
+</ContentView>

@@ -1,6 +1,6 @@
-using SmartGrowHubApp.ViewModels;
+using SmartGrowHubApp.ViewModels.ControllerPageModels;
 
-namespace SmartGrowHubApp.Pages;
+namespace SmartGrowHubApp.Pages.ControllerPages;
 
 public partial class SettingsPage : ContentPage
 {
@@ -12,14 +12,6 @@ public partial class SettingsPage : ContentPage
 
         BindingContext = settingsPageModel;
         _pageModel = settingsPageModel;
-    }
-
-    private void ButtonView_Pressed(object sender, EventArgs e)
-    {
-        if (sender is BindableObject item)
-        {
-            _pageModel.ShowSettingPageCommand.Execute(item.BindingContext);
-        }
     }
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)

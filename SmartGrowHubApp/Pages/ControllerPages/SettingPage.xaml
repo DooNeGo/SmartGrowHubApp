@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartGrowHubApp.Pages.ControllerPages.SettingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SmartGrowHubApp.Controls"
+    xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
+    Title="{Binding SettingType, Converter={converters:NameConverter}}"
+    x:DataType="viewModels:SettingPageModel"
+    Style="{StaticResource DefaultPageStyle}">
+
+    <VerticalStackLayout Spacing="5">
+        <Border
+            Padding="20,5,20,5"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                              Dark={StaticResource ContainerDark}}"
+            StrokeThickness="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="15" />
+            </Border.StrokeShape>
+
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+
+            <Grid RowDefinitions="Auto">
+                <Label
+                    FontFamily="GoogleRegular"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="Mode"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="120" />
+
+                <!--<Switch
+                        HorizontalOptions="End"
+                        IsToggled="{Binding IsSettingOn, Mode=OneWayToSource}"
+                        VerticalOptions="Center" />-->
+
+                <Picker
+                    BackgroundColor="Transparent"
+                    FontFamily="GoogleRegular"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    ItemsSource="{x:Static viewModels:SettingPageModel.ModeValues}"
+                    SelectedItem="{Binding ModeComponent.Value}"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    TitleColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                 Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="100" />
+            </Grid>
+            <!--<BoxView HeightRequest="0.1" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />-->
+        </Border>
+
+        <Border
+            Padding="20,5,20,5"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                              Dark={StaticResource ContainerDark}}"
+            IsVisible="{Binding IsSettingOn, Mode=OneWay}"
+            StrokeThickness="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="15" />
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="Auto">
+                <Label
+                    FontFamily="GoogleRegular"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding PowerComponent.Type, Converter={converters:NameConverter}}"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="120" />
+
+                <Entry
+                    BackgroundColor="Transparent"
+                    FontFamily="GoogleRegular"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    MaxLength="3"
+                    Text="{Binding PowerComponent.Value}"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="100">
+
+                    <Entry.Behaviors>
+                        <toolkit:SelectAllTextBehavior />
+                        <toolkit:NumericValidationBehavior
+                            Flags="ValidateOnValueChanged"
+                            MaximumDecimalPlaces="2"
+                            MaximumValue="100.0"
+                            MinimumValue="1.0">
+                            <toolkit:NumericValidationBehavior.InvalidStyle>
+                                <Style TargetType="Entry">
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Error}, Dark={StaticResource ErrorDark}}" />
+                                </Style>
+                            </toolkit:NumericValidationBehavior.InvalidStyle>
+                        </toolkit:NumericValidationBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+            </Grid>
+        </Border>
+
+        <!--<CollectionView
+            BackgroundColor="Transparent"
+            ItemsSource="{Binding Components}"
+            SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Padding="5"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                                          Dark={StaticResource ContainerDark}}"
+                        StrokeThickness="0">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15" />
+                        </Border.StrokeShape>
+
+                        <Grid x:DataType="observables:ComponentObservable" RowDefinitions="Auto">
+                            <Label
+                                Margin="10,0,0,0"
+                                FontFamily="GoogleRegular"
+                                FontSize="20"
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding Type, Converter={converters:NameConverter}}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                            Dark={StaticResource OnBackgroundDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"
+                                WidthRequest="120" />
+
+                            <Picker
+                                Margin="0,0,10,0"
+                                BackgroundColor="Transparent"
+                                FontFamily="GoogleRegular"
+                                FontSize="20"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                SelectedItem="{Binding Value}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                            Dark={StaticResource OnBackgroundDark}}"
+                                TitleColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                             Dark={StaticResource OnBackgroundDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"
+                                WidthRequest="100" />
+
+                            <Label
+                                Margin="0,0,5,0"
+                                FontFamily="GoogleRegular"
+                                FontSize="20"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Unit}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                            Dark={StaticResource OnBackgroundDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"
+                                WidthRequest="40" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+    </VerticalStackLayout>
+</ContentPage>

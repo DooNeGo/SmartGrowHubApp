@@ -132,22 +132,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\ComponentControl.xaml.cs">
+	    <DependentUpon>ComponentControl.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Popups\AddControllerPopup.xaml.cs">
 	    <DependentUpon>AddControllerPopup.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\ComponentControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ControllerPages\SettingModeSwitchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SensorReadingPage.xaml">
+	  <MauiXaml Update="Pages\ControllerPages\SensorReadingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SettingPage.xaml">
+	  <MauiXaml Update="Pages\ControllerPages\SettingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	  <MauiXaml Update="Pages\ControllerPages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

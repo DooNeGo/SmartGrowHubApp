@@ -17,19 +17,16 @@ public enum SettingType
     Heating,
     Cooling,
     AirHumidification,
-    PreferAirTemperature,
-    PreferAirHumidity,
-    PreferIllumination
 }
 
-public class Setting
+public class SettingModel
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public SettingType Type { get; init; }
 
-    public IEnumerable<Component> Components { get; set; } = [];
+    public IEnumerable<ComponentModel> Components { get; set; } = [];
 
-    public Setting AddComponent(Component component)
+    public SettingModel AddComponent(ComponentModel component)
     {
         Components = Components.Append(component);
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="SmartGrowHubApp.Pages.ControllerPage"
+    x:Class="SmartGrowHubApp.Pages.ControllerPages.ControllerPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
@@ -8,29 +8,30 @@
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels"
+    xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
     Title="Home"
-    Padding="10"
     x:DataType="viewModels:ControllerPageModel"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="False"
+    SizeChanged="OnSizeChanged"
+    Style="{StaticResource DefaultPageStyle}">
 
-    <RefreshView RefreshColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" SizeChanged="OnSizeChanged">
+    <RefreshView RefreshColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
         <CollectionView
-            Grid.Row="1"
             FlowDirection="LeftToRight"
             ItemSizingStrategy="MeasureAllItems"
             ItemsSource="{Binding SensorsReading}"
             SelectionMode="None">
 
-            <!--<CollectionView.Header>
+            <CollectionView.Header>
                 <Label
-                    Margin="0,10,0,5"
+                    Margin="0,15,0,5"
+                    FontAttributes="Bold"
                     FontFamily="GoogleRegular"
-                    FontSize="40"
+                    FontSize="35"
                     Text="Home"
                     TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                                 Dark={StaticResource OnBackgroundDark}}" />
-            </CollectionView.Header>-->
+            </CollectionView.Header>
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
@@ -44,9 +45,9 @@
                 <DataTemplate>
                     <Border
                         Padding="15"
-                        x:DataType="models:SensorReading"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryContainer},
-                                                          Dark={StaticResource SecondaryContainerDark}}"
+                        x:DataType="models:SensorReadingModel"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                                          Dark={StaticResource ContainerDark}}"
                         StrokeThickness="0">
 
                         <Border.GestureRecognizers>
@@ -58,7 +59,7 @@
                         </Border.StrokeShape>
 
                         <VerticalStackLayout
-                            x:DataType="models:SensorReading"
+                            x:DataType="models:SensorReadingModel"
                             HorizontalOptions="Center"
                             Spacing="5"
                             VerticalOptions="Center">
@@ -73,8 +74,8 @@
                                     HorizontalOptions="Center"
                                     HorizontalTextAlignment="Center"
                                     Text="{Binding Value}"
-                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                Dark={StaticResource OnBackgroundDark}}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center" />
 
@@ -84,8 +85,8 @@
                                     HorizontalOptions="Center"
                                     HorizontalTextAlignment="Center"
                                     Text="{Binding Unit}"
-                                    TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                                Dark={StaticResource OnSecondaryContainerDark}}"
+                                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                                Dark={StaticResource OnBackgroundDark}}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center" />
 
@@ -97,8 +98,8 @@
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding Type, Converter={converters:NameConverter}}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnSecondaryContainer},
-                                                            Dark={StaticResource OnSecondaryContainerDark}}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                            Dark={StaticResource OnBackgroundDark}}"
                                 VerticalOptions="Center"
                                 VerticalTextAlignment="Center" />
 

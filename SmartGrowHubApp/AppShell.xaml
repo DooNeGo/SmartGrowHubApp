@@ -5,18 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:local="clr-namespace:SmartGrowHubApp"
-    xmlns:pages="clr-namespace:SmartGrowHubApp.Pages"
+    xmlns:pages="clr-namespace:SmartGrowHubApp.Pages.ControllerPages"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-    FlyoutBackdrop="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
-                                     Dark={StaticResource OnPrimaryContainerDark}}"
-    FlyoutBackground="{AppThemeBinding Light={StaticResource White},
-                                       Dark={StaticResource Gray900}}"
+    FlyoutBackground="{AppThemeBinding Light={StaticResource Container},
+                                       Dark={StaticResource ContainerDark}}"
     FlyoutBehavior="{OnIdiom Phone=Disabled,
                              Default=Locked}"
     FlyoutWidth="60"
     Shell.NavBarHasShadow="True"
-    Shell.TabBarForegroundColor="{AppThemeBinding Light={StaticResource OnPrimaryContainer},
-                                                  Dark={StaticResource OnPrimaryContainerDark}}"
+    Shell.TabBarForegroundColor="{StaticResource PrimaryContainer}"
     Shell.TabBarIsVisible="{OnIdiom Phone=True,
                                     Default=False}">
 
@@ -38,7 +35,7 @@
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.House}"
-                    Color="{StaticResource PrimaryDark}" />
+                    Color="{StaticResource PrimaryContainer}" />
             </ShellContent.Icon>
         </ShellContent>
 
@@ -47,7 +44,7 @@
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.Gear}"
-                    Color="{StaticResource PrimaryDark}" />
+                    Color="{StaticResource PrimaryContainer}" />
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
