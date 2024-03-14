@@ -14,13 +14,13 @@ public partial class SettingPage : ContentPage
         BindingContext = _pageModel;
     }
 
-    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         var parameter = new ShellNavigationQueryParameters
         {
             { "ModeComponent", _pageModel.ModeComponent! }
         };
 
-        await Shell.Current.GoToAsync($"{nameof(SettingModeSwitchPageModel)}", parameter);
+        Shell.Current.GoToAsync($"{nameof(SettingModeSwitchPageModel)}", parameter);
     }
 }

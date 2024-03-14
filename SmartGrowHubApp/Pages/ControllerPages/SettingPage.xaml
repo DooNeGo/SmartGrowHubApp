@@ -38,7 +38,7 @@
             <Grid RowDefinitions="Auto">
                 <Label
                     FontFamily="GoogleRegular"
-                    FontSize="18"
+                    FontSize="16"
                     HorizontalOptions="Start"
                     HorizontalTextAlignment="Start"
                     Text="Mode"
@@ -51,7 +51,7 @@
                 <Label
                     Margin="0,0,25,0"
                     FontFamily="GoogleRegular"
-                    FontSize="16"
+                    FontSize="14"
                     HorizontalOptions="End"
                     Text="{Binding ModeComponent.Value}"
                     TextColor="{AppThemeBinding Light={StaticResource Gray300},
@@ -60,7 +60,7 @@
 
                 <Label
                     FontFamily="FASolid"
-                    FontSize="16"
+                    FontSize="14"
                     HorizontalOptions="End"
                     Text="{Static fa:SolidIconFont.AngleRight}"
                     TextColor="{AppThemeBinding Light={StaticResource Gray300},

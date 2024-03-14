@@ -3,10 +3,12 @@
     x:Class="SmartGrowHubApp.Pages.ControllerPages.SettingsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SmartGrowHubApp.Controls"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
+    xmlns:selectors="clr-namespace:SmartGrowHubApp.DataTemplateSelectors"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
     Title="Settings"
@@ -41,53 +43,33 @@
             VerticalOptions="Start">
 
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="15" />
+                <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
 
             <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout>
-                            <Grid
-                                Padding="0,10,0,10"
-                                x:DataType="observables:SettingObservable"
-                                RowDefinitions="Auto">
-
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                </Grid.GestureRecognizers>
-
-                                <Label
-                                    Margin="5,0,0,0"
-                                    FontFamily="GoogleRegular"
-                                    FontSize="18"
-                                    Text="{Binding Type, Converter={converters:NameConverter}}"
-                                    TextColor="{AppThemeBinding Light={StaticResource Gray900},
-                                                                Dark={StaticResource Gray100}}" />
-
-                                <Label
-                                    Margin="0,0,25,0"
-                                    FontFamily="GoogleRegular"
-                                    FontSize="16"
-                                    HorizontalOptions="End"
-                                    Text="{Binding PreviewValue}"
-                                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                                Dark={StaticResource Gray500}}"
-                                    VerticalOptions="Center" />
-
-                                <Label
-                                    FontFamily="FASolid"
-                                    FontSize="16"
-                                    HorizontalOptions="End"
-                                    Text="{Static fa:SolidIconFont.AngleRight}"
-                                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                                Dark={StaticResource Gray500}}"
-                                    VerticalOptions="Center" />
-                            </Grid>
-
-                            <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
-                        </VerticalStackLayout>
-                    </DataTemplate>
+                    <selectors:LastItemSpecialTemplateSelector>
+                        <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout x:DataType="observables:SettingObservable">
+                                    <controls:SettingControl
+                                        Title="{Binding Type, Mode=OneTime, Converter={StaticResource NameConverter}}"
+                                        PreviewValue="{Binding PreviewValue, Mode=OneWay}"
+                                        Tapped="TapGestureRecognizer_Tapped" />
+                                    <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                        <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                            <DataTemplate>
+                                <controls:SettingControl
+                                    Title="{Binding Type, Mode=OneTime, Converter={StaticResource NameConverter}}"
+                                    x:DataType="observables:SettingObservable"
+                                    PreviewValue="{Binding PreviewValue, Mode=OneWay}"
+                                    Tapped="TapGestureRecognizer_Tapped" />
+                            </DataTemplate>
+                        </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                    </selectors:LastItemSpecialTemplateSelector>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>

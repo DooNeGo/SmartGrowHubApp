@@ -21,4 +21,12 @@ public partial class SettingsPage : ContentPage
             _pageModel.ShowSettingPageCommand.Execute(item.BindingContext);
         }
     }
+
+    private void SettingControl_PointerReleased(object sender, PointerEventArgs e)
+    {
+        if (sender is BindableObject item)
+        {
+            _pageModel.ShowSettingPageCommand.Execute(item.BindingContext);
+        }
+    }
 }

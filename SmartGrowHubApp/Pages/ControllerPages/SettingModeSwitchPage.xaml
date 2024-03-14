@@ -13,11 +13,11 @@
     x:DataType="viewModels:SettingModeSwitchPageModel"
     Style="{StaticResource DefaultPageStyle}">
 
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <converters:SelectionToVisibilityConverter x:Key="SelectionToVisibilityConverter" SelectedItem="{Binding Source={x:Reference collectionView}, Path=SelectedItem}" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <Border
         Padding="20,0,20,0"

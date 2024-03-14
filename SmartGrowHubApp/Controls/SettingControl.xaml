@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="SmartGrowHubApp.Controls.SettingControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
+    xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
+    xmlns:local="clr-namespace:SmartGrowHubApp.Controls"
+    xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects">
+
+    <ContentView.GestureRecognizers>
+        <PointerGestureRecognizer PointerPressed="PointerGestureRecognizer_PointerPressed" PointerReleased="PointerGestureRecognizer_PointerReleased" />
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+    </ContentView.GestureRecognizers>
+
+    <Grid Padding="0,10,0,10" RowDefinitions="Auto">
+        <Label
+            x:Name="TitleLabel"
+            FontFamily="GoogleRegular"
+            FontSize="16"
+            TextColor="{AppThemeBinding Light={StaticResource Gray900},
+                                        Dark={StaticResource Gray100}}" />
+
+        <Label
+            x:Name="PreviewValueLabel"
+            Margin="0,0,25,0"
+            FontFamily="GoogleRegular"
+            FontSize="15"
+            HorizontalOptions="End"
+            TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                        Dark={StaticResource Gray500}}"
+            VerticalOptions="Center" />
+
+        <Label
+            FontFamily="FASolid"
+            FontSize="15"
+            HorizontalOptions="End"
+            Text="{Static fa:SolidIconFont.AngleRight}"
+            TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                        Dark={StaticResource Gray500}}"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentView>

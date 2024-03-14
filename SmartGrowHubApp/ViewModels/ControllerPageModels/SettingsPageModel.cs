@@ -18,9 +18,4 @@ public partial class SettingsPageModel(ISettingsService settingsService) : Obser
         SelectedItem = setting;
         Shell.Current.GoToAsync(nameof(SettingPageModel));
     }
-
-    //private void Load()
-    //{
-
-    //}
 }
