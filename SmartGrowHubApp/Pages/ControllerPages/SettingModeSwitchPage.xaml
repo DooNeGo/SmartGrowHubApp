@@ -27,14 +27,14 @@
         VerticalOptions="Start">
 
         <Border.StrokeShape>
-            <RoundRectangle CornerRadius="15" />
+            <RoundRectangle CornerRadius="10" />
         </Border.StrokeShape>
 
         <VerticalStackLayout>
             <VerticalStackLayout>
                 <Grid
                     x:Name="OffControl"
-                    Padding="0,10,0,10"
+                    Padding="0,15,0,15"
                     RowDefinitions="Auto">
 
                     <Grid.GestureRecognizers>
@@ -43,7 +43,7 @@
 
                     <Label
                         FontFamily="GoogleRegular"
-                        FontSize="18"
+                        FontSize="17"
                         HorizontalOptions="Start"
                         HorizontalTextAlignment="Start"
                         Text="Off"
@@ -55,7 +55,7 @@
                     <Label
                         x:Name="OffCheckMark"
                         FontFamily="FASolid"
-                        FontSize="18"
+                        FontSize="17"
                         HorizontalOptions="End"
                         HorizontalTextAlignment="Center"
                         IsVisible="False"
@@ -66,11 +66,11 @@
                         VerticalTextAlignment="Center" />
                 </Grid>
 
-                <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
 
                 <Grid
                     x:Name="OnControl"
-                    Padding="0,10,0,10"
+                    Padding="0,15,0,15"
                     RowDefinitions="Auto">
 
                     <Grid.GestureRecognizers>
@@ -79,7 +79,7 @@
 
                     <Label
                         FontFamily="GoogleRegular"
-                        FontSize="18"
+                        FontSize="17"
                         HorizontalOptions="Start"
                         HorizontalTextAlignment="Start"
                         Text="On"
@@ -91,7 +91,7 @@
                     <Label
                         x:Name="OnCheckMark"
                         FontFamily="FASolid"
-                        FontSize="18"
+                        FontSize="17"
                         HorizontalOptions="End"
                         HorizontalTextAlignment="Center"
                         IsVisible="False"
@@ -102,11 +102,11 @@
                         VerticalTextAlignment="Center" />
                 </Grid>
 
-                <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
 
                 <Grid
                     x:Name="AutoControl"
-                    Padding="0,10,0,10"
+                    Padding="0,15,0,15"
                     RowDefinitions="Auto">
 
                     <Grid.GestureRecognizers>
@@ -115,7 +115,7 @@
 
                     <Label
                         FontFamily="GoogleRegular"
-                        FontSize="18"
+                        FontSize="17"
                         HorizontalOptions="Start"
                         HorizontalTextAlignment="Start"
                         Text="Auto"
@@ -127,7 +127,7 @@
                     <Label
                         x:Name="AutoCheckMark"
                         FontFamily="FASolid"
-                        FontSize="18"
+                        FontSize="17"
                         HorizontalOptions="End"
                         HorizontalTextAlignment="Center"
                         IsVisible="False"

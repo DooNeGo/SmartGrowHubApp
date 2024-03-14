@@ -10,7 +10,7 @@
     xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
-    Title="{Binding SettingType, Converter={StaticResource NameConverter}}"
+    Title="{Binding SettingType, Mode=OneTime, Converter={StaticResource NameConverter}}"
     x:DataType="viewModels:SettingPageModel"
     Style="{StaticResource DefaultPageStyle}">
 
@@ -20,53 +20,21 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <VerticalStackLayout Spacing="5">
+    <VerticalStackLayout Spacing="10">
         <Border
-            Padding="20,10,20,10"
+            Padding="20,0,20,0"
             BackgroundColor="{AppThemeBinding Light={StaticResource Container},
                                               Dark={StaticResource ContainerDark}}"
             StrokeThickness="0">
 
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="15" />
+                <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
 
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-            </Border.GestureRecognizers>
-
-            <Grid RowDefinitions="Auto">
-                <Label
-                    FontFamily="GoogleRegular"
-                    FontSize="16"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="Mode"
-                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                Dark={StaticResource OnBackgroundDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center"
-                    WidthRequest="120" />
-
-                <Label
-                    Margin="0,0,25,0"
-                    FontFamily="GoogleRegular"
-                    FontSize="14"
-                    HorizontalOptions="End"
-                    Text="{Binding ModeComponent.Value}"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                Dark={StaticResource Gray500}}"
-                    VerticalOptions="Center" />
-
-                <Label
-                    FontFamily="FASolid"
-                    FontSize="14"
-                    HorizontalOptions="End"
-                    Text="{Static fa:SolidIconFont.AngleRight}"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                Dark={StaticResource Gray500}}"
-                    VerticalOptions="Center" />
-            </Grid>
+            <controls:SettingControl
+                Title="Mode"
+                PreviewValue="{Binding ModeComponent.Value}"
+                Tapped="TapGestureRecognizer_Tapped" />
         </Border>
 
         <Border

@@ -14,11 +14,11 @@
         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
     </ContentView.GestureRecognizers>
 
-    <Grid Padding="0,10,0,10" RowDefinitions="Auto">
+    <Grid Padding="0,15,0,15" RowDefinitions="Auto">
         <Label
             x:Name="TitleLabel"
             FontFamily="GoogleRegular"
-            FontSize="16"
+            FontSize="17"
             TextColor="{AppThemeBinding Light={StaticResource Gray900},
                                         Dark={StaticResource Gray100}}" />
 
