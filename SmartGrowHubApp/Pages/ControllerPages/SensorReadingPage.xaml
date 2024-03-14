@@ -5,6 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
-    Title="{Binding SensorReading.Type, Converter={converters:NameConverter}}"
+    Title="{Binding SensorReading.Type, Converter={StaticResource NameConverter}}"
     x:DataType="viewModels:SensorReadingPageModel"
-    Style="{StaticResource DefaultPageStyle}" />
+    Style="{StaticResource DefaultPageStyle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NameConverter x:Key="NameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

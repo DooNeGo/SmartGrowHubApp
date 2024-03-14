@@ -5,19 +5,24 @@ using SmartGrowHubApp.ObservableObjects;
 
 namespace SmartGrowHubApp.ViewModels.ControllerPageModels;
 
-public partial class SettingModeSwitchPageModel(ComponentObservable modeComponent) : ObservableObject
+public partial class SettingModeSwitchPageModel : ObservableObject, IQueryAttributable
 {
     [ObservableProperty]
-    private SettingMode _settingMode = (SettingMode)modeComponent.Value;
+    private ComponentObservable? _modeComponent;
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        ModeComponent = (ComponentObservable)query["ModeComponent"];
+    }
 
     [RelayCommand]
-    private void SetSettingMode(object sender)
+    private void SetSettingMode(SettingMode settingMode)
     {
-        if (sender is not BindableObject bindableObject)
+        if (ModeComponent is null)
         {
-            throw new ArgumentException("Wrong bindable object", nameof(sender));
+            throw new NullReferenceException(nameof(ModeComponent));
         }
 
-        SettingMode = (SettingMode)bindableObject.BindingContext;
+        ModeComponent.Value = settingMode;
     }
 }

@@ -8,79 +8,88 @@
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
     Title="Settings"
     x:DataType="viewModels:SettingsPageModel"
     Shell.NavBarIsVisible="False"
     Style="{StaticResource DefaultPageStyle}">
 
-    <Grid RowDefinitions="*">
-        <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
-            <CollectionView.Header>
-                <Label
-                    Margin="0,15,0,5"
-                    FontAttributes="Bold"
-                    FontFamily="GoogleRegular"
-                    FontSize="35"
-                    HorizontalOptions="Start"
-                    Text="Settings"
-                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                Dark={StaticResource OnBackgroundDark}}"
-                    VerticalOptions="Start" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NameConverter x:Key="NameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-            </CollectionView.Header>
+    <VerticalStackLayout>
+        <Label
+            Margin="0,15,0,5"
+            FontAttributes="Bold"
+            FontFamily="GoogleRegular"
+            FontSize="35"
+            HorizontalOptions="Start"
+            Text="Settings"
+            TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                        Dark={StaticResource OnBackgroundDark}}"
+            VerticalOptions="Start" />
 
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
+        <Border
+            Padding="20,0,20,0"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Container},
+                                              Dark={StaticResource ContainerDark}}"
+            HorizontalOptions="Center"
+            StrokeThickness="0"
+            VerticalOptions="Start">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border
-                        Padding="15"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource Container},
-                                                          Dark={StaticResource ContainerDark}}"
-                        StrokeThickness="0">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="15" />
-                        </Border.StrokeShape>
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="15" />
+            </Border.StrokeShape>
 
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                        </Border.GestureRecognizers>
+            <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Grid
+                                Padding="0,10,0,10"
+                                x:DataType="observables:SettingObservable"
+                                RowDefinitions="Auto">
 
-                        <Grid x:DataType="observables:SettingObservable" RowDefinitions="Auto">
-                            <Label
-                                Margin="5,0,0,0"
-                                FontFamily="GoogleRegular"
-                                FontSize="18"
-                                Text="{Binding Type, Converter={converters:NameConverter}}"
-                                TextColor="{AppThemeBinding Light={StaticResource Gray900},
-                                                            Dark={StaticResource Gray100}}" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                </Grid.GestureRecognizers>
 
-                            <Label
-                                Margin="0,0,25,0"
-                                FontFamily="GoogleRegular"
-                                FontSize="16"
-                                HorizontalOptions="End"
-                                Text="{Binding PreviewValue}"
-                                TextColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                            Dark={StaticResource Gray500}}"
-                                VerticalOptions="Center" />
+                                <Label
+                                    Margin="5,0,0,0"
+                                    FontFamily="GoogleRegular"
+                                    FontSize="18"
+                                    Text="{Binding Type, Converter={converters:NameConverter}}"
+                                    TextColor="{AppThemeBinding Light={StaticResource Gray900},
+                                                                Dark={StaticResource Gray100}}" />
 
-                            <Label
-                                FontFamily="FASolid"
-                                FontSize="16"
-                                HorizontalOptions="End"
-                                Text="{Static fa:SolidIconFont.AngleRight}"
-                                TextColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                            Dark={StaticResource Gray500}}"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+                                <Label
+                                    Margin="0,0,25,0"
+                                    FontFamily="GoogleRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="End"
+                                    Text="{Binding PreviewValue}"
+                                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                                Dark={StaticResource Gray500}}"
+                                    VerticalOptions="Center" />
+
+                                <Label
+                                    FontFamily="FASolid"
+                                    FontSize="16"
+                                    HorizontalOptions="End"
+                                    Text="{Static fa:SolidIconFont.AngleRight}"
+                                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                                Dark={StaticResource Gray500}}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+
+                            <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+    </VerticalStackLayout>
 </ContentPage>

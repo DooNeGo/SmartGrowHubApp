@@ -13,7 +13,7 @@
                              Default=Locked}"
     FlyoutWidth="60"
     Shell.NavBarHasShadow="True"
-    Shell.TabBarForegroundColor="{StaticResource PrimaryContainer}"
+    Shell.TabBarForegroundColor="{StaticResource PrimaryDark}"
     Shell.TabBarIsVisible="{OnIdiom Phone=True,
                                     Default=False}">
 
@@ -35,7 +35,7 @@
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.House}"
-                    Color="{StaticResource PrimaryContainer}" />
+                    Color="{StaticResource PrimaryDark}" />
             </ShellContent.Icon>
         </ShellContent>
 
@@ -44,7 +44,7 @@
                 <FontImageSource
                     FontFamily="FASolid"
                     Glyph="{x:Static fa:SolidIconFont.Gear}"
-                    Color="{StaticResource PrimaryContainer}" />
+                    Color="{StaticResource PrimaryDark}" />
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>

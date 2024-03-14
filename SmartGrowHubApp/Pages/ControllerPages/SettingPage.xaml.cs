@@ -16,11 +16,11 @@ public partial class SettingPage : ContentPage
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        //Dictionary<string, object> dictionary = new Dictionary<string, object>()
-        //{
-        //    { "param1",  new SettingModeSwitchPageModel(_pageModel.ModeComponent!) }
-        //};
+        var parameter = new ShellNavigationQueryParameters
+        {
+            { "ModeComponent", _pageModel.ModeComponent! }
+        };
 
-        await Shell.Current.GoToAsync(nameof(SettingModeSwitchPageModel));
+        await Shell.Current.GoToAsync($"{nameof(SettingModeSwitchPageModel)}", parameter);
     }
 }

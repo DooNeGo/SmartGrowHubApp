@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
-    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
@@ -14,6 +13,12 @@
     Shell.NavBarIsVisible="False"
     SizeChanged="OnSizeChanged"
     Style="{StaticResource DefaultPageStyle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NameConverter x:Key="NameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <RefreshView RefreshColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}">
         <CollectionView
@@ -97,7 +102,7 @@
                                 FontSize="14"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Type, Converter={converters:NameConverter}}"
+                                Text="{Binding Type, Converter={StaticResource NameConverter}}"
                                 TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                                             Dark={StaticResource OnBackgroundDark}}"
                                 VerticalOptions="Center"

@@ -6,8 +6,6 @@ public class LastItemSpecialTemplateSelector : DataTemplateSelector
 {
     public DataTemplate? DefaultTemplate { get; set; }
 
-    public DataTemplate? SelectedTemplate { get; set; }
-
     public DataTemplate? LastItemTemplate { get; set; }
 
     protected override DataTemplate? OnSelectTemplate(object item, BindableObject container)
@@ -16,8 +14,6 @@ public class LastItemSpecialTemplateSelector : DataTemplateSelector
         {
             return null;
         }
-
-        return DefaultTemplate;
 
         if (itemsView.ItemsSource is IList itemsList && item.Equals(itemsList[^1]))
         {

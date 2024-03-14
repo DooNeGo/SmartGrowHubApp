@@ -1,10 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
-using SmartGrowHubApp.Pages;
 using SmartGrowHubApp.Pages.ControllerPages;
 using SmartGrowHubApp.Services;
-using SmartGrowHubApp.ViewModels;
 using SmartGrowHubApp.ViewModels.ControllerPageModels;
 using UraniumUI;
 
@@ -19,7 +17,6 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseUraniumUI()
             .UseMauiCommunityToolkit()
-            .UseMauiCommunityToolkitCore()
             .UseUraniumUIMaterial()
             .ConfigureFonts(fonts =>
             {

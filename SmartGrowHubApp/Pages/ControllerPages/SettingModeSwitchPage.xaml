@@ -6,6 +6,7 @@
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
+    xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
     xmlns:selectors="clr-namespace:SmartGrowHubApp.DataTemplateSelectors"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
     Title="Mode"
@@ -14,15 +15,14 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:IndexToVisibilityConverter x:Key="IndexToVisibilityConverter" />
+            <converters:SelectionToVisibilityConverter x:Key="SelectionToVisibilityConverter" SelectedItem="{Binding Source={x:Reference collectionView}, Path=SelectedItem}" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <Border
-        Padding="20,5,20,5"
+        Padding="20,0,20,0"
         BackgroundColor="{AppThemeBinding Light={StaticResource Container},
                                           Dark={StaticResource ContainerDark}}"
-        HorizontalOptions="Center"
         StrokeThickness="0"
         VerticalOptions="Start">
 
@@ -30,175 +30,167 @@
             <RoundRectangle CornerRadius="15" />
         </Border.StrokeShape>
 
-        <!--<ListView
-            x:Name="listView"
-            ItemSelected="ListView_ItemSelected"
-            ItemsSource="{Static viewModels:SettingPageModel.ModeValues}"
-            SelectionMode="Single">
-            <ListView.ItemTemplate>
-                <selectors:LastItemSpecialTemplateSelector>
-                    <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout x:Name="verticalStack" Spacing="5">
-                                <Grid RowDefinitions="Auto">
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding SetSettingModeCommand}"
-                                            CommandParameter="{Binding .}"
-                                            Tapped="TapGestureRecognizer_Tapped" />
-                                    </Grid.GestureRecognizers>
+        <VerticalStackLayout>
+            <VerticalStackLayout>
+                <Grid
+                    x:Name="OffControl"
+                    Padding="0,10,0,10"
+                    RowDefinitions="Auto">
 
-                                    <Label
-                                        FontFamily="GoogleRegular"
-                                        FontSize="18"
-                                        HorizontalOptions="Start"
-                                        HorizontalTextAlignment="Start"
-                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Off_Tapped" />
+                    </Grid.GestureRecognizers>
 
-                                    <Label
-                                        x:Name="checkMark"
-                                        FontFamily="FASolid"
-                                        FontSize="18"
-                                        HorizontalOptions="End"
-                                        HorizontalTextAlignment="Center"
-                                        IsVisible="False"
-                                        Text="{Static fa:SolidIconFont.Check}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-                                </Grid>
+                    <Label
+                        FontFamily="GoogleRegular"
+                        FontSize="18"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Off"
+                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                    Dark={StaticResource OnBackgroundDark}}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
 
-                                <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
-                    <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout x:Name="verticalStack">
-                                <Grid RowDefinitions="Auto">
-                                    <Label
-                                        FontFamily="GoogleRegular"
-                                        FontSize="18"
-                                        HorizontalOptions="Start"
-                                        HorizontalTextAlignment="Start"
-                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
+                    <Label
+                        x:Name="OffCheckMark"
+                        FontFamily="FASolid"
+                        FontSize="18"
+                        HorizontalOptions="End"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="False"
+                        Text="{Static fa:SolidIconFont.Check}"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                    Dark={StaticResource PrimaryDark}}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
 
-                                    <Label
-                                        FontFamily="FASolid"
-                                        FontSize="18"
-                                        HorizontalOptions="End"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Static fa:SolidIconFont.Check}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-                                </Grid>
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
-                </selectors:LastItemSpecialTemplateSelector>
-            </ListView.ItemTemplate>
-        </ListView>-->
+                <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
 
-        <CollectionView
+                <Grid
+                    x:Name="OnControl"
+                    Padding="0,10,0,10"
+                    RowDefinitions="Auto">
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="On_Tapped" />
+                    </Grid.GestureRecognizers>
+
+                    <Label
+                        FontFamily="GoogleRegular"
+                        FontSize="18"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="On"
+                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                    Dark={StaticResource OnBackgroundDark}}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <Label
+                        x:Name="OnCheckMark"
+                        FontFamily="FASolid"
+                        FontSize="18"
+                        HorizontalOptions="End"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="False"
+                        Text="{Static fa:SolidIconFont.Check}"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                    Dark={StaticResource PrimaryDark}}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+
+                <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+
+                <Grid
+                    x:Name="AutoControl"
+                    Padding="0,10,0,10"
+                    RowDefinitions="Auto">
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Auto_Tapped" />
+                    </Grid.GestureRecognizers>
+
+                    <Label
+                        FontFamily="GoogleRegular"
+                        FontSize="18"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Auto"
+                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                    Dark={StaticResource OnBackgroundDark}}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <Label
+                        x:Name="AutoCheckMark"
+                        FontFamily="FASolid"
+                        FontSize="18"
+                        HorizontalOptions="End"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="False"
+                        Text="{Static fa:SolidIconFont.Check}"
+                        TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                    Dark={StaticResource PrimaryDark}}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!--<CollectionView
             x:Name="collectionView"
             HorizontalOptions="Center"
             ItemsSource="{Static viewModels:SettingPageModel.ModeValues}"
-            SelectionChanged="CollectionView_SelectionChanged"
+            SelectionMode="None"
             VerticalOptions="Start">
 
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-
             <CollectionView.ItemTemplate>
-                <selectors:LastItemSpecialTemplateSelector>
-                    <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout x:Name="verticalStack" Spacing="5">
+                <DataTemplate>
+                    <VerticalStackLayout x:Name="verticalStack" x:DataType="observables:ComponentObservable">
+                        <Grid Padding="0,10,0,10" RowDefinitions="Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </Grid.GestureRecognizers>
 
-                                <Grid Padding="5" RowDefinitions="Auto">
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding SetSettingModeCommand}"
-                                            CommandParameter="{Binding .}"
-                                            Tapped="TapGestureRecognizer_Tapped" />
-                                    </Grid.GestureRecognizers>
+                            <Label
+                                FontFamily="GoogleRegular"
+                                FontSize="18"
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding .}"
+                                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                            Dark={StaticResource OnBackgroundDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
 
-                                    <Label
-                                        FontFamily="GoogleRegular"
-                                        FontSize="18"
-                                        HorizontalOptions="Start"
-                                        HorizontalTextAlignment="Start"
-                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
+                            <Label
+                                x:Name="checkMark"
+                                FontFamily="FASolid"
+                                FontSize="18"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="{Static fa:SolidIconFont.Check}"
+                                TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                            Dark={StaticResource PrimaryDark}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center">
+                                <Label.IsVisible>
+                                    <Binding Path="SelectedItem" Source="{RelativeSource AncestorType={Type CollectionView}}">
+                                        <Binding.Converter>
+                                            <converters:SelectionToVisibilityConverter SelectedItem="{Binding Source={x:Reference verticalStack}, Path=BindingContext}" />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Label.IsVisible>
+                            </Label>
+                        </Grid>
 
-                                    <Label
-                                        x:Name="checkMark"
-                                        FontFamily="FASolid"
-                                        FontSize="18"
-                                        HorizontalOptions="End"
-                                        HorizontalTextAlignment="Center"
-                                        IsVisible="False"
-                                        Text="{Static fa:SolidIconFont.Check}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-                                </Grid>
-
-                                <BoxView
-                                    HeightRequest="0.5"
-                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=ItemsSource.Count, Converter={StaticResource IndexToVisibilityConverter}, ConverterParameter={Binding .}}"
-                                    Color="{AppThemeBinding Light={StaticResource Gray200},
-                                                            Dark={StaticResource Gray600}}" />
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
-                    <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout x:Name="verticalStack">
-                                <Grid RowDefinitions="Auto">
-                                    <Label
-                                        FontFamily="GoogleRegular"
-                                        FontSize="18"
-                                        HorizontalOptions="Start"
-                                        HorizontalTextAlignment="Start"
-                                        Text="{Binding Source={x:Reference verticalStack}, Path=BindingContext}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-
-                                    <Label
-                                        FontFamily="FASolid"
-                                        FontSize="18"
-                                        HorizontalOptions="End"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Static fa:SolidIconFont.Check}"
-                                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                                    Dark={StaticResource OnBackgroundDark}}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-                                </Grid>
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
-                </selectors:LastItemSpecialTemplateSelector>
+                        <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </CollectionView>-->
     </Border>
 </ContentPage>

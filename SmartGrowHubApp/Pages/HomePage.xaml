@@ -27,19 +27,22 @@
                                         Dark={StaticResource OnBackgroundDark}}"
             VerticalOptions="Center" />
 
-        <material:ButtonView
+        <Border
             Grid.Row="0"
             BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
                                               Dark={StaticResource PrimaryDark}}"
             HeightRequest="45"
             HorizontalOptions="End"
-            PressedCommand="{Binding ShowAddControllerPopupCommand}"
             VerticalOptions="Center"
             WidthRequest="45">
 
-            <material:ButtonView.StrokeShape>
-                <RoundRectangle CornerRadius="24" />
-            </material:ButtonView.StrokeShape>
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ShowAddControllerPopupCommand}" />
+            </Border.GestureRecognizers>
 
             <Label
                 FontFamily="FARegular"
@@ -49,7 +52,7 @@
                                             Dark={StaticResource OnPrimaryDark}}"
                 VerticalOptions="Center" />
 
-        </material:ButtonView>
+        </Border>
 
         <CollectionView
             x:Name="collectionView"

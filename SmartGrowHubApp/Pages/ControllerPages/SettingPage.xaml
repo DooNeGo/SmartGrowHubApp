@@ -9,15 +9,20 @@
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
     xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
-    Title="{Binding SettingType, Converter={converters:NameConverter}}"
+    Title="{Binding SettingType, Converter={StaticResource NameConverter}}"
     x:DataType="viewModels:SettingPageModel"
     Style="{StaticResource DefaultPageStyle}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NameConverter x:Key="NameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <VerticalStackLayout Spacing="5">
         <Border
-            Padding="20,5,20,5"
+            Padding="20,10,20,10"
             BackgroundColor="{AppThemeBinding Light={StaticResource Container},
                                               Dark={StaticResource ContainerDark}}"
             StrokeThickness="0">
@@ -43,32 +48,29 @@
                     VerticalTextAlignment="Center"
                     WidthRequest="120" />
 
-                <!--<Switch
-                        HorizontalOptions="End"
-                        IsToggled="{Binding IsSettingOn, Mode=OneWayToSource}"
-                        VerticalOptions="Center" />-->
-
-                <Picker
-                    BackgroundColor="Transparent"
+                <Label
+                    Margin="0,0,25,0"
                     FontFamily="GoogleRegular"
                     FontSize="16"
                     HorizontalOptions="End"
-                    HorizontalTextAlignment="Center"
-                    ItemsSource="{x:Static viewModels:SettingPageModel.ModeValues}"
-                    SelectedItem="{Binding ModeComponent.Value}"
-                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                Dark={StaticResource OnBackgroundDark}}"
-                    TitleColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                 Dark={StaticResource OnBackgroundDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center"
-                    WidthRequest="100" />
+                    Text="{Binding ModeComponent.Value}"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                Dark={StaticResource Gray500}}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontFamily="FASolid"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="{Static fa:SolidIconFont.AngleRight}"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                Dark={StaticResource Gray500}}"
+                    VerticalOptions="Center" />
             </Grid>
-            <!--<BoxView HeightRequest="0.1" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />-->
         </Border>
 
         <Border
-            Padding="20,5,20,5"
+            Padding="20,10,20,10"
             BackgroundColor="{AppThemeBinding Light={StaticResource Container},
                                               Dark={StaticResource ContainerDark}}"
             IsVisible="{Binding IsSettingOn, Mode=OneWay}"
@@ -84,7 +86,7 @@
                     FontSize="18"
                     HorizontalOptions="Start"
                     HorizontalTextAlignment="Start"
-                    Text="{Binding PowerComponent.Type, Converter={converters:NameConverter}}"
+                    Text="{Binding PowerComponent.Type, Converter={StaticResource NameConverter}}"
                     TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                                 Dark={StaticResource OnBackgroundDark}}"
                     VerticalOptions="Center"
@@ -103,7 +105,7 @@
                     TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                                 Dark={StaticResource OnBackgroundDark}}"
                     VerticalOptions="Center"
-                    VerticalTextAlignment="Center"
+                    VerticalTextAlignment="End"
                     WidthRequest="100">
 
                     <Entry.Behaviors>
@@ -152,7 +154,7 @@
                                 FontSize="20"
                                 HorizontalOptions="Start"
                                 HorizontalTextAlignment="Start"
-                                Text="{Binding Type, Converter={converters:NameConverter}}"
+                                Text="{Binding Type, Converter={StaticResource NameConverter}}"
                                 TextColor="{AppThemeBinding Light={StaticResource OnBackground},
                                                             Dark={StaticResource OnBackgroundDark}}"
                                 VerticalOptions="Center"
