@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui.Core;
+﻿using CommunityToolkit.Diagnostics;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SmartGrowHubApp.Model;
@@ -22,19 +23,8 @@ public partial class HomePageModel : ObservableObject
     public HomePageModel(IPopupService popupService)
     {
         _popupService = popupService;
-
         Load();
-
-        if (Items is null)
-        {
-            throw new NullReferenceException(nameof(Items));
-        }
-    }
-
-    public void ClearSelection()
-    {
-        SelectedItem = null;
-        SelectedItems.Clear();
+        Guard.IsNotNull(Items);
     }
 
     [RelayCommand]

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SmartGrowHubApp.Model;
 using SmartGrowHubApp.ObservableObjects;
@@ -12,17 +13,13 @@ public partial class SettingModeSwitchPageModel : ObservableObject, IQueryAttrib
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        ModeComponent = (ComponentObservable)query["ModeComponent"];
+        ModeComponent = (ComponentObservable)query[nameof(ModeComponent)];
     }
 
     [RelayCommand]
     private void SetSettingMode(SettingMode settingMode)
     {
-        if (ModeComponent is null)
-        {
-            throw new NullReferenceException(nameof(ModeComponent));
-        }
-
+        Guard.IsNotNull(ModeComponent);
         ModeComponent.Value = settingMode;
     }
 }

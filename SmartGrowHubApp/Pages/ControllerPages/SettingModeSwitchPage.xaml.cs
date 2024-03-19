@@ -1,3 +1,4 @@
+using CommunityToolkit.Diagnostics;
 using SmartGrowHubApp.Model;
 using SmartGrowHubApp.ViewModels.ControllerPageModels;
 using System.ComponentModel;
@@ -24,10 +25,7 @@ public partial class SettingModeSwitchPage : ContentPage
                 return;
             }
 
-            if (_pageModel.ModeComponent is null)
-            {
-                throw new NullReferenceException("ModeComponent is null");
-            }
+            Guard.IsNotNull(_pageModel.ModeComponent);
 
             ModeComponent_PropertyChanged(null, new PropertyChangedEventArgs(null));
             _pageModel.ModeComponent.PropertyChanged += ModeComponent_PropertyChanged;
