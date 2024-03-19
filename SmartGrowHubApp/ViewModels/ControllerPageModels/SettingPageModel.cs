@@ -1,15 +1,17 @@
 ﻿using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SmartGrowHubApp.Model;
 using SmartGrowHubApp.ObservableObjects;
 
 namespace SmartGrowHubApp.ViewModels.ControllerPageModels;
 
-public partial class SettingPageModel : ObservableObject
+public partial class SettingPageModel : ObservableObject, IQueryAttributable
 {
     public static readonly SettingMode[] ModeValues = Enum.GetValues<SettingMode>();
 
-    private readonly SettingObservable _setting;
+    [ObservableProperty]
+    private SettingObservable? _setting;
 
     [ObservableProperty]
     private ComponentObservable? _modeComponent;
@@ -18,32 +20,39 @@ public partial class SettingPageModel : ObservableObject
     private ComponentObservable? _powerComponent;
 
     [ObservableProperty]
-    private IEnumerable<ComponentObservable> _components;
+    private IEnumerable<ComponentObservable>? _components;
 
     [ObservableProperty]
     private bool _isSettingOn;
 
     [ObservableProperty]
     private bool _isAutoOn;
-
-    public SettingPageModel(SettingsPageModel settingsPageModel)
+    
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        Guard.IsNotNull(settingsPageModel.SelectedItem);
+        Setting = (SettingObservable)query["Setting"];
+        
+        ModeComponent  = Setting.Components.First(c => c.Type is ComponentType.Mode);
+        PowerComponent = Setting.Components.First(c => c.Type is ComponentType.Power);
+        Components     = Setting.Components;
 
-        _setting = settingsPageModel.SelectedItem;
-        _modeComponent = _setting.Components.FirstOrDefault(c => c.Type is ComponentType.Mode);
-        _powerComponent = _setting.Components.FirstOrDefault(c => c.Type is ComponentType.Power);
-        _components = _setting.Components;
-
-        Guard.IsNotNull(_modeComponent);
-
-        _modeComponent.PropertyChanged += (_, _) =>
+        ModeComponent.PropertyChanged += (_, _) =>
         {
-            _setting.PreviewValue = _modeComponent.Value;
-            IsSettingOn = _modeComponent.Value is SettingMode.On;
-            IsAutoOn = _modeComponent.Value is SettingMode.Auto;
+            IsSettingOn = ModeComponent.Value is SettingMode.On;
+            IsAutoOn    = ModeComponent.Value is SettingMode.Auto;
         };
     }
 
-    public SettingType SettingType => _setting.Type;
+    [RelayCommand]
+    private async Task ShowModeSwitchPage()
+    {
+        Guard.IsNotNull(ModeComponent);
+        
+        var parameter = new ShellNavigationQueryParameters
+        {
+            { SettingModeSwitchPageModel.ModeComponentName, ModeComponent }
+        };
+
+        await Shell.Current.GoToAsync(nameof(SettingModeSwitchPageModel), parameter);
+    }
 }

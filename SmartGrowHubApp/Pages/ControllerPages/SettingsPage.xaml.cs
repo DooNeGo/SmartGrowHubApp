@@ -2,7 +2,7 @@ using SmartGrowHubApp.ViewModels.ControllerPageModels;
 
 namespace SmartGrowHubApp.Pages.ControllerPages;
 
-public partial class SettingsPage : ContentPage
+public partial class SettingsPage
 {
     private readonly SettingsPageModel _pageModel;
 

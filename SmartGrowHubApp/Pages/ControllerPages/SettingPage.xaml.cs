@@ -2,7 +2,7 @@ using SmartGrowHubApp.ViewModels.ControllerPageModels;
 
 namespace SmartGrowHubApp.Pages.ControllerPages;
 
-public partial class SettingPage : ContentPage
+public partial class SettingPage
 {
     private readonly SettingPageModel _pageModel;
 
@@ -16,11 +16,6 @@ public partial class SettingPage : ContentPage
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        var parameter = new ShellNavigationQueryParameters
-        {
-            { "ModeComponent", _pageModel.ModeComponent! }
-        };
-
-        Shell.Current.GoToAsync($"{nameof(SettingModeSwitchPageModel)}", parameter);
+        _pageModel.ShowModeSwitchPageCommand.Execute(null);
     }
 }

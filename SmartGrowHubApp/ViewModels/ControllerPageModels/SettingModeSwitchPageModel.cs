@@ -8,6 +8,8 @@ namespace SmartGrowHubApp.ViewModels.ControllerPageModels;
 
 public partial class SettingModeSwitchPageModel : ObservableObject, IQueryAttributable
 {
+    public const string ModeComponentName = nameof(ModeComponent);
+
     [ObservableProperty]
     private ComponentObservable? _modeComponent;
 

@@ -6,18 +6,26 @@ public class NameConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        string str = value?.ToString() ?? throw new Exception();
-        string upper = str.ToUpper(culture);
+        var str = value?.ToString();
+
+        if (str is null)
+        {
+            return null;
+        }
+        
+        string upper  = str.ToUpper(culture);
         string result = str;
-        int shift = 0;
+        var    shift  = 0;
 
         for (var i = 1; i < str.Length - 1; i++)
         {
-            if (str[i] == upper[i] && str[i - 1] != upper[i - 1])
+            if (str[i] != upper[i] || str[i - 1] == upper[i - 1])
             {
-                result = result.Insert(i + shift, " ");
-                shift++;
+                continue;
             }
+
+            result = result.Insert(i + shift, " ");
+            shift++;
         }
 
         return result;
@@ -25,17 +33,25 @@ public class NameConverter : IValueConverter
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        string str = value?.ToString() ?? throw new Exception();
+        var str = value?.ToString();
+        
+        if (str is null)
+        {
+            return null;
+        }
+        
         string result = str;
-        int shift = 0;
+        var    shift  = 0;
 
         for (var i = 1; i < str.Length - 1; i++)
         {
-            if (str[i] is ' ')
+            if (str[i] is not ' ')
             {
-                result = result.Remove(i - shift);
-                shift++;
+                continue;
             }
+
+            result = result.Remove(i - shift);
+            shift++;
         }
 
         return result;

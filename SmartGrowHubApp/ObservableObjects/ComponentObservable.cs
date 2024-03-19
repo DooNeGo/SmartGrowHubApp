@@ -3,7 +3,7 @@ using SmartGrowHubApp.Model;
 
 namespace SmartGrowHubApp.ObservableObjects;
 
-public partial class ComponentObservable(ComponentModel component) : ObservableObject
+public class ComponentObservable(ComponentModel component) : ObservableObject
 {
     public ComponentType Type => component.Type;
 
@@ -12,12 +12,14 @@ public partial class ComponentObservable(ComponentModel component) : ObservableO
         get => component.Value;
         set
         {
-            if (!Value.Equals(value))
+            if (Value.Equals(value))
             {
-                OnPropertyChanging(nameof(Value));
-                component.Value = value;
-                OnPropertyChanged(nameof(Value));
+                return;
             }
+
+            OnPropertyChanging();
+            component.Value = value;
+            OnPropertyChanged();
         }
     }
 
@@ -26,12 +28,14 @@ public partial class ComponentObservable(ComponentModel component) : ObservableO
         get => component.Unit;
         set
         {
-            if (!Unit.Equals(value, StringComparison.Ordinal))
+            if (Unit.Equals(value, StringComparison.Ordinal))
             {
-                OnPropertyChanging(nameof(Unit));
-                component.Unit = value;
-                OnPropertyChanged(nameof(Unit));
+                return;
             }
+
+            OnPropertyChanging();
+            component.Unit = value;
+            OnPropertyChanged();
         }
     }
 }

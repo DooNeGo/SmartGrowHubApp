@@ -10,7 +10,7 @@
     xmlns:observables="clr-namespace:SmartGrowHubApp.ObservableObjects"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:SmartGrowHubApp.ViewModels.ControllerPageModels"
-    Title="{Binding SettingType, Mode=OneTime, Converter={StaticResource NameConverter}}"
+    Title="{Binding Setting.Type, Mode=OneTime, Converter={StaticResource NameConverter}}"
     x:DataType="viewModels:SettingPageModel"
     Style="{StaticResource DefaultPageStyle}">
 
@@ -37,7 +37,7 @@
                 Tapped="TapGestureRecognizer_Tapped" />
         </Border>
 
-        <Border
+        <!--<Border
             Padding="20,10,20,10"
             BackgroundColor="{AppThemeBinding Light={StaticResource Container},
                                               Dark={StaticResource ContainerDark}}"
@@ -92,7 +92,7 @@
                     </Entry.Behaviors>
                 </Entry>
             </Grid>
-        </Border>
+        </Border>-->
 
         <!--<CollectionView
             BackgroundColor="Transparent"

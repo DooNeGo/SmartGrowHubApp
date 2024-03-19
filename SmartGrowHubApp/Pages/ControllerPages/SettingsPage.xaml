@@ -56,7 +56,7 @@
                                         Title="{Binding Type, Mode=OneTime, Converter={StaticResource NameConverter}}"
                                         PreviewValue="{Binding PreviewValue, Mode=OneWay}"
                                         Tapped="TapGestureRecognizer_Tapped" />
-                                    <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                                    <BoxView HeightRequest="{OnPlatform Default=0.5, Android=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
                                 </VerticalStackLayout>
                             </DataTemplate>
                         </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>

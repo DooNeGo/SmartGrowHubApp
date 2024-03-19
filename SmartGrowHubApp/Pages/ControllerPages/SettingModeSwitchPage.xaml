@@ -14,12 +14,6 @@
     x:DataType="viewModels:SettingModeSwitchPageModel"
     Style="{StaticResource DefaultPageStyle}">
 
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:SelectionToVisibilityConverter x:Key="SelectionToVisibilityConverter" SelectedItem="{Binding Source={x:Reference collectionView}, Path=SelectedItem}" />
-        </ResourceDictionary>
-    </ContentPage.Resources>-->
-
     <Border
         Padding="20,0,20,0"
         BackgroundColor="{AppThemeBinding Light={StaticResource Container},
@@ -31,186 +25,24 @@
             <RoundRectangle CornerRadius="10" />
         </Border.StrokeShape>
 
-        <!--<VerticalStackLayout>
-            <Grid
-                x:Name="OffControl"
-                Padding="0,15,0,15"
-                RowDefinitions="Auto">
-
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Off_Tapped" />
-                </Grid.GestureRecognizers>
-
-                <Label
-                    FontFamily="GoogleRegular"
-                    FontSize="17"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="Off"
-                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                Dark={StaticResource OnBackgroundDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-
-                <Label
-                    x:Name="OffCheckMark"
-                    FontFamily="FASolid"
-                    FontSize="17"
-                    HorizontalOptions="End"
-                    HorizontalTextAlignment="Center"
-                    IsVisible="False"
-                    Text="{Static fa:SolidIconFont.Check}"
-                    TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                Dark={StaticResource PrimaryDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-            </Grid>
-
-            <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
-
-            <Grid
-                x:Name="OnControl"
-                Padding="0,15,0,15"
-                RowDefinitions="Auto">
-
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="On_Tapped" />
-                </Grid.GestureRecognizers>
-
-                <Label
-                    FontFamily="GoogleRegular"
-                    FontSize="17"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="On"
-                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                Dark={StaticResource OnBackgroundDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-
-                <Label
-                    x:Name="OnCheckMark"
-                    FontFamily="FASolid"
-                    FontSize="17"
-                    HorizontalOptions="End"
-                    HorizontalTextAlignment="Center"
-                    IsVisible="False"
-                    Text="{Static fa:SolidIconFont.Check}"
-                    TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                Dark={StaticResource PrimaryDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-            </Grid>
-
-            <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
-
-            <Grid
-                x:Name="AutoControl"
-                Padding="0,15,0,15"
-                RowDefinitions="Auto">
-
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Auto_Tapped" />
-                </Grid.GestureRecognizers>
-
-                <Label
-                    FontFamily="GoogleRegular"
-                    FontSize="17"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="Auto"
-                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                Dark={StaticResource OnBackgroundDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-
-                <Label
-                    x:Name="AutoCheckMark"
-                    FontFamily="FASolid"
-                    FontSize="17"
-                    HorizontalOptions="End"
-                    HorizontalTextAlignment="Center"
-                    IsVisible="False"
-                    Text="{Static fa:SolidIconFont.Check}"
-                    TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                Dark={StaticResource PrimaryDark}}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-            </Grid>
-        </VerticalStackLayout>-->
-
         <VerticalStackLayout BindableLayout.ItemsSource="{Binding Source={x:Static viewModels:SettingPageModel.ModeValues}}">
             <BindableLayout.ItemTemplateSelector>
                 <selectors:LastItemSpecialTemplateSelector x:DataType="models:SettingMode">
                     <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
                         <DataTemplate>
                             <VerticalStackLayout>
-                                <controls:CustomizableSettingControl Title="{Binding ., Mode=OneTime, Converter={StaticResource NameConverter}}" Tapped="PreviewableSettingControl_Tapped" />
-                                <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                                <controls:CustomizableSettingControl Title="{Binding ., Mode=OneTime}" Tapped="PreviewableSettingControl_Tapped" />
+                                <BoxView HeightRequest="{OnPlatform Default=0.5, Android=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
                             </VerticalStackLayout>
                         </DataTemplate>
                     </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
                     <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
                         <DataTemplate>
-                            <controls:CustomizableSettingControl Title="{Binding ., Mode=OneTime, Converter={StaticResource NameConverter}}" Tapped="PreviewableSettingControl_Tapped" />
+                            <controls:CustomizableSettingControl Title="{Binding ., Mode=OneTime}" Tapped="PreviewableSettingControl_Tapped" />
                         </DataTemplate>
                     </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
                 </selectors:LastItemSpecialTemplateSelector>
             </BindableLayout.ItemTemplateSelector>
         </VerticalStackLayout>
-
-
-        <!--<CollectionView
-            x:Name="collectionView"
-            HorizontalOptions="Center"
-            ItemsSource="{Static viewModels:SettingPageModel.ModeValues}"
-            SelectionMode="None"
-            VerticalOptions="Start">
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout x:Name="verticalStack" x:DataType="observables:ComponentObservable">
-                        <Grid Padding="0,10,0,10" RowDefinitions="Auto">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                            </Grid.GestureRecognizers>
-
-                            <Label
-                                FontFamily="GoogleRegular"
-                                FontSize="18"
-                                HorizontalOptions="Start"
-                                HorizontalTextAlignment="Start"
-                                Text="{Binding .}"
-                                TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                            Dark={StaticResource OnBackgroundDark}}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center" />
-
-                            <Label
-                                x:Name="checkMark"
-                                FontFamily="FASolid"
-                                FontSize="18"
-                                HorizontalOptions="End"
-                                HorizontalTextAlignment="Center"
-                                Text="{Static fa:SolidIconFont.Check}"
-                                TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                            Dark={StaticResource PrimaryDark}}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center">
-                                <Label.IsVisible>
-                                    <Binding Path="SelectedItem" Source="{RelativeSource AncestorType={Type CollectionView}}">
-                                        <Binding.Converter>
-                                            <converters:SelectionToVisibilityConverter SelectedItem="{Binding Source={x:Reference verticalStack}, Path=BindingContext}" />
-                                        </Binding.Converter>
-                                    </Binding>
-                                </Label.IsVisible>
-                            </Label>
-                        </Grid>
-
-                        <BoxView HeightRequest="0.5" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>-->
     </Border>
 </ContentPage>

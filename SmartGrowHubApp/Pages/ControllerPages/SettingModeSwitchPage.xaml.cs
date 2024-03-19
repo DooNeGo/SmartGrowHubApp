@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace SmartGrowHubApp.Pages.ControllerPages;
 
-public partial class SettingModeSwitchPage : ContentPage
+public partial class SettingModeSwitchPage
 {
     private readonly SettingModeSwitchPageModel _pageModel;
 

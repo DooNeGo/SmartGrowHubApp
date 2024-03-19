@@ -2,7 +2,7 @@ using SmartGrowHubApp.ViewModels.ControllerPageModels;
 
 namespace SmartGrowHubApp.Pages.ControllerPages;
 
-public partial class ControllerPage : ContentPage
+public partial class ControllerPage
 {
     private readonly ControllerPageModel _pageModel;
 
@@ -12,10 +12,16 @@ public partial class ControllerPage : ContentPage
 
         BindingContext = pageModel;
         _pageModel = pageModel;
+
+        if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        {
+            SizeChanged += OnSizeChanged;
+        }
     }
 
     private void OnSizeChanged(object? sender, EventArgs e)
     {
+        // TODO: Remove the magic number
         gridItemsLayout.Span = (int)(Width / 170);
     }
 

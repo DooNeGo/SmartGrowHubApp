@@ -23,21 +23,21 @@ public class SettingsService : ISettingsService
         return _settingsObservable;
     }
 
-    private ComponentModel GetPreviewComponent(SettingModel setting)
+    private ComponentType GetPreviewComponentType(SettingModel setting)
     {
-        return setting.Components.FirstOrDefault(c => c.Type is ComponentType.Mode)!;
+        return ComponentType.Mode;
     }
 
     private void Load()
     {
         _settings =
         [
-            new() { Type = SettingType.Watering },
-            new() { Type = SettingType.DayLighting },
-            new() { Type = SettingType.UVLighting },
-            new() { Type = SettingType.Heating },
-            new() { Type = SettingType.Cooling },
-            new() { Type = SettingType.AirHumidification }
+            new SettingModel { Type = SettingType.Watering },
+            new SettingModel { Type = SettingType.DayLighting },
+            new SettingModel { Type = SettingType.UVLighting },
+            new SettingModel { Type = SettingType.Heating },
+            new SettingModel { Type = SettingType.Cooling },
+            new SettingModel { Type = SettingType.AirHumidification }
         ];
 
         _settings[0]
@@ -68,7 +68,7 @@ public class SettingsService : ISettingsService
 
         for (var i = 0; i < _settings.Count; i++)
         {
-            _settingsObservable[i] = new SettingObservable(_settings[i]) { PreviewValue = GetPreviewComponent(_settings[i]).Value};
+            _settingsObservable[i] = new SettingObservable(_settings[i], GetPreviewComponentType(_settings[i]));
         }
     }
 }

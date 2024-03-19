@@ -5,13 +5,13 @@ public partial class PreviewableSettingControl
     public static readonly BindableProperty PreviewValueProperty = BindableProperty.Create(nameof(PreviewValue), typeof(object), typeof(PreviewableSettingControl), propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (PreviewableSettingControl)bindable;
-        control.PreviewValueLabel.Text = newValue.ToString();
+        control.PreviewValueLabel.Text = newValue.ToString()!;
     });
 
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(PreviewableSettingControl), propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (PreviewableSettingControl)bindable;
-        control.TitleLabel.Text = newValue as string;
+        control.TitleLabel.Text = newValue.ToString()!;
     });
 
     public event EventHandler<PointerEventArgs>? PointerReleased;

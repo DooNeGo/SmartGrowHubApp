@@ -10,12 +10,14 @@ public partial class SettingsPageModel(ISettingsService settingsService) : Obser
     [ObservableProperty]
     private IEnumerable<SettingObservable> _settings = settingsService.GetSettings();
 
-    public SettingObservable? SelectedItem { get; private set; }
-
     [RelayCommand]
     private async Task ShowSettingPage(SettingObservable setting)
     {
-        SelectedItem = setting;
-        await Shell.Current.GoToAsync(nameof(SettingPageModel));
+        var parameter = new ShellNavigationQueryParameters
+        {
+            { "Setting", setting }
+        };
+        
+        await Shell.Current.GoToAsync(nameof(SettingPageModel), parameter);
     }
 }
