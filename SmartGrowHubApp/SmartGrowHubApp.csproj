@@ -40,7 +40,7 @@
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<PublishAot>False</PublishAot>
 		<PublishTrimmed>False</PublishTrimmed>
-		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
@@ -55,12 +55,11 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
 	  <ApplicationTitle>Smart Grow Hub</ApplicationTitle>
-	  <EnableLLVM>True</EnableLLVM>
+	  <EnableLLVM>False</EnableLLVM>
 	  <Debugger>Xamarin</Debugger>
 	  <PublishTrimmed>False</PublishTrimmed>
 	  <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
 	  <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
@@ -81,14 +80,14 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
 	  <ApplicationTitle>Smart Grow Hub</ApplicationTitle>
-	  <EnableLLVM>True</EnableLLVM>
+	  <EnableLLVM>False</EnableLLVM>
 	  <Debugger>Xamarin</Debugger>
 	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
 	  <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
 	  <Optimize>True</Optimize>
 	  <PublishTrimmed>True</PublishTrimmed>
 	  <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+	  <RunAOTCompilation>True</RunAOTCompilation>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
@@ -126,16 +125,17 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="MQTTnet" Version="4.3.3.952" />
-		<PackageReference Include="runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.2" />
 		<PackageReference Include="UraniumUI" Version="2.8.0" />
 		<PackageReference Include="UraniumUI.Material" Version="2.8.0" />
-		<PackageReference Include="runtime.linux-arm.Microsoft.DotNet.ILCompiler" Version="9.0.0-preview.1.24080.9" />
 	</ItemGroup>
 
+	<!-- <PackageReference Include="runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.2" /> -->
+	<!-- <PackageReference Include="runtime.linux-arm.Microsoft.DotNet.ILCompiler" Version="9.0.0-preview.1.24080.9" /> -->
+	
 	<ItemGroup>
 	  <Compile Update="Controls\PreviewableSettingControl.xaml.cs">
 	    <DependentUpon>PreviewableSettingControl.xaml</DependentUpon>

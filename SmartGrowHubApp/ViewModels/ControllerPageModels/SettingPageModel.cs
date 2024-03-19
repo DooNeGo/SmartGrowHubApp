@@ -30,6 +30,11 @@ public partial class SettingPageModel : ObservableObject, IQueryAttributable
     
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
+        if (!query.Any())
+        {
+            return;
+        }
+
         Setting = (SettingObservable)query["Setting"];
         
         ModeComponent  = Setting.Components.First(c => c.Type is ComponentType.Mode);
