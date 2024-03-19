@@ -31,7 +31,7 @@
                 <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
 
-            <controls:SettingControl
+            <controls:PreviewableSettingControl
                 Title="Mode"
                 PreviewValue="{Binding ModeComponent.Value}"
                 Tapped="TapGestureRecognizer_Tapped" />

@@ -15,7 +15,7 @@ public partial class SettingObservable : ObservableObject
         _settingModel = setting;
 
         var components = new ComponentObservable[_settingModel.Components.Count()];
-        int counter = 0;
+        var counter = 0;
 
         foreach (ComponentModel componentModel in _settingModel.Components)
         {

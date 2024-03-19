@@ -18,6 +18,6 @@ public class ComponentModel
 
     public required object Value { get; set; }
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Unit { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string Unit { get; set; } = string.Empty;
 }

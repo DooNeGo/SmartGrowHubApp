@@ -13,9 +13,9 @@ public partial class SettingsPageModel(ISettingsService settingsService) : Obser
     public SettingObservable? SelectedItem { get; private set; }
 
     [RelayCommand]
-    private void ShowSettingPage(SettingObservable setting)
+    private async Task ShowSettingPage(SettingObservable setting)
     {
         SelectedItem = setting;
-        Shell.Current.GoToAsync(nameof(SettingPageModel));
+        await Shell.Current.GoToAsync(nameof(SettingPageModel));
     }
 }

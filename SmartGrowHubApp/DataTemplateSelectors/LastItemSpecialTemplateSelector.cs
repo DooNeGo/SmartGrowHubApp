@@ -10,18 +10,29 @@ public class LastItemSpecialTemplateSelector : DataTemplateSelector
 
     protected override DataTemplate? OnSelectTemplate(object item, BindableObject container)
     {
-        if (container is not ItemsView itemsView)
+        if (container is ItemsView itemsView)
         {
-            return null;
-        }
+            if (itemsView.ItemsSource is IList itemsList && item.Equals(itemsList[^1]))
+            {
+                return LastItemTemplate;
+            }
 
-        if (itemsView.ItemsSource is IList itemsList && item.Equals(itemsList[^1]))
+            return DefaultTemplate;
+        }
+        else if (container is Layout)
         {
-            return LastItemTemplate;
+            var itemsSource = (IList)BindableLayout.GetItemsSource(container);
+
+            if (item.Equals(itemsSource[^1]))
+            {
+                return LastItemTemplate;
+            }
+
+            return DefaultTemplate;
         }
         else
         {
-            return DefaultTemplate;
+            throw new ArgumentException($"Invalid container type: {item.GetType()}", nameof(container));
         }
     }
 }

@@ -133,8 +133,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Controls\SettingControl.xaml.cs">
-	    <DependentUpon>SettingControl.xaml</DependentUpon>
+	  <Compile Update="Controls\PreviewableSettingControl.xaml.cs">
+	    <DependentUpon>PreviewableSettingControl.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\AddControllerPopup.xaml.cs">
 	    <DependentUpon>AddControllerPopup.xaml</DependentUpon>
@@ -142,7 +142,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\SettingControl.xaml">
+	  <MauiXaml Update="Controls\CustomizableSettingControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\PreviewableSettingControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ControllerPages\SettingModeSwitchPage.xaml">

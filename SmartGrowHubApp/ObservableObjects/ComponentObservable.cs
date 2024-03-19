@@ -12,20 +12,26 @@ public partial class ComponentObservable(ComponentModel component) : ObservableO
         get => component.Value;
         set
         {
-            OnPropertyChanging(nameof(Value));
-            component.Value = value;
-            OnPropertyChanged(nameof(Value));
+            if (!Value.Equals(value))
+            {
+                OnPropertyChanging(nameof(Value));
+                component.Value = value;
+                OnPropertyChanged(nameof(Value));
+            }
         }
     }
 
-    public string? Unit
+    public string Unit
     {
         get => component.Unit;
         set
         {
-            OnPropertyChanging(nameof(Unit));
-            component.Unit = value;
-            OnPropertyChanged(nameof(Unit));
+            if (!Unit.Equals(value, StringComparison.Ordinal))
+            {
+                OnPropertyChanging(nameof(Unit));
+                component.Unit = value;
+                OnPropertyChanged(nameof(Unit));
+            }
         }
     }
 }

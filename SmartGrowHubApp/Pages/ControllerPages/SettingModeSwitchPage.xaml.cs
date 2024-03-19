@@ -38,18 +38,18 @@ public partial class SettingModeSwitchPage : ContentPage
     {
         var settingMode = (SettingMode)_pageModel.ModeComponent!.Value;
 
-        if (settingMode is SettingMode.Off)
-        {
-            SetCheckMark(OffCheckMark);
-        }
-        else if (settingMode is SettingMode.On)
-        {
-            SetCheckMark(OnCheckMark);
-        }
-        else
-        {
-            SetCheckMark(AutoCheckMark);
-        }
+        //if (settingMode is SettingMode.Off)
+        //{
+        //    SetCheckMark(OffCheckMark);
+        //}
+        //else if (settingMode is SettingMode.On)
+        //{
+        //    SetCheckMark(OnCheckMark);
+        //}
+        //else
+        //{
+        //    SetCheckMark(AutoCheckMark);
+        //}
     }
 
     private void SetCheckMark(Label checkMark)
@@ -63,26 +63,28 @@ public partial class SettingModeSwitchPage : ContentPage
         _previousCheckMark = checkMark;
     }
 
-    private void SetSettingMode(SettingMode settingMode)
-    {
-        if (_pageModel.ModeComponent is not null)
-        {
-            _pageModel.ModeComponent.Value = settingMode;
-        }
-    }
-
     private void Off_Tapped(object sender, TappedEventArgs e)
     {
-        SetSettingMode(SettingMode.Off);
+        _pageModel.SetSettingModeCommand.Execute(SettingMode.Off);
     }
 
     private void On_Tapped(object sender, TappedEventArgs e)
     {
-        SetSettingMode(SettingMode.On);
+        _pageModel.SetSettingModeCommand.Execute(SettingMode.On);
     }
 
     private void Auto_Tapped(object sender, TappedEventArgs e)
     {
-        SetSettingMode(SettingMode.Auto);
+        _pageModel.SetSettingModeCommand.Execute(SettingMode.Auto);
+    }
+
+    private void PreviewableSettingControl_Tapped(object sender, TappedEventArgs e)
+    {
+        if (sender is not BindableObject bindableObject)
+        {
+            throw new ArgumentException("Invalid sender type");
+        }
+
+        _pageModel.SetSettingModeCommand.Execute(bindableObject.BindingContext);
     }
 }

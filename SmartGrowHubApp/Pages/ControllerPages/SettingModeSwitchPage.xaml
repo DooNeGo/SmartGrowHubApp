@@ -3,6 +3,7 @@
     x:Class="SmartGrowHubApp.Pages.ControllerPages.SettingModeSwitchPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SmartGrowHubApp.Controls"
     xmlns:converters="clr-namespace:SmartGrowHubApp.Converters"
     xmlns:fa="clr-namespace:SmartGrowHubApp.FontAwesome"
     xmlns:models="clr-namespace:SmartGrowHubApp.Model"
@@ -30,115 +31,134 @@
             <RoundRectangle CornerRadius="10" />
         </Border.StrokeShape>
 
-        <VerticalStackLayout>
-            <VerticalStackLayout>
-                <Grid
-                    x:Name="OffControl"
-                    Padding="0,15,0,15"
-                    RowDefinitions="Auto">
+        <!--<VerticalStackLayout>
+            <Grid
+                x:Name="OffControl"
+                Padding="0,15,0,15"
+                RowDefinitions="Auto">
 
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Off_Tapped" />
-                    </Grid.GestureRecognizers>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Off_Tapped" />
+                </Grid.GestureRecognizers>
 
-                    <Label
-                        FontFamily="GoogleRegular"
-                        FontSize="17"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="Off"
-                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                    Dark={StaticResource OnBackgroundDark}}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                <Label
+                    FontFamily="GoogleRegular"
+                    FontSize="17"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="Off"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
-                    <Label
-                        x:Name="OffCheckMark"
-                        FontFamily="FASolid"
-                        FontSize="17"
-                        HorizontalOptions="End"
-                        HorizontalTextAlignment="Center"
-                        IsVisible="False"
-                        Text="{Static fa:SolidIconFont.Check}"
-                        TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                    Dark={StaticResource PrimaryDark}}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
-                </Grid>
+                <Label
+                    x:Name="OffCheckMark"
+                    FontFamily="FASolid"
+                    FontSize="17"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="False"
+                    Text="{Static fa:SolidIconFont.Check}"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                Dark={StaticResource PrimaryDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
 
-                <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+            <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
 
-                <Grid
-                    x:Name="OnControl"
-                    Padding="0,15,0,15"
-                    RowDefinitions="Auto">
+            <Grid
+                x:Name="OnControl"
+                Padding="0,15,0,15"
+                RowDefinitions="Auto">
 
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="On_Tapped" />
-                    </Grid.GestureRecognizers>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="On_Tapped" />
+                </Grid.GestureRecognizers>
 
-                    <Label
-                        FontFamily="GoogleRegular"
-                        FontSize="17"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="On"
-                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                    Dark={StaticResource OnBackgroundDark}}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                <Label
+                    FontFamily="GoogleRegular"
+                    FontSize="17"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="On"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
-                    <Label
-                        x:Name="OnCheckMark"
-                        FontFamily="FASolid"
-                        FontSize="17"
-                        HorizontalOptions="End"
-                        HorizontalTextAlignment="Center"
-                        IsVisible="False"
-                        Text="{Static fa:SolidIconFont.Check}"
-                        TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                    Dark={StaticResource PrimaryDark}}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
-                </Grid>
+                <Label
+                    x:Name="OnCheckMark"
+                    FontFamily="FASolid"
+                    FontSize="17"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="False"
+                    Text="{Static fa:SolidIconFont.Check}"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                Dark={StaticResource PrimaryDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
 
-                <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+            <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
 
-                <Grid
-                    x:Name="AutoControl"
-                    Padding="0,15,0,15"
-                    RowDefinitions="Auto">
+            <Grid
+                x:Name="AutoControl"
+                Padding="0,15,0,15"
+                RowDefinitions="Auto">
 
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Auto_Tapped" />
-                    </Grid.GestureRecognizers>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Auto_Tapped" />
+                </Grid.GestureRecognizers>
 
-                    <Label
-                        FontFamily="GoogleRegular"
-                        FontSize="17"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="Auto"
-                        TextColor="{AppThemeBinding Light={StaticResource OnBackground},
-                                                    Dark={StaticResource OnBackgroundDark}}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                <Label
+                    FontFamily="GoogleRegular"
+                    FontSize="17"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="Auto"
+                    TextColor="{AppThemeBinding Light={StaticResource OnBackground},
+                                                Dark={StaticResource OnBackgroundDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
-                    <Label
-                        x:Name="AutoCheckMark"
-                        FontFamily="FASolid"
-                        FontSize="17"
-                        HorizontalOptions="End"
-                        HorizontalTextAlignment="Center"
-                        IsVisible="False"
-                        Text="{Static fa:SolidIconFont.Check}"
-                        TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                    Dark={StaticResource PrimaryDark}}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
-                </Grid>
-            </VerticalStackLayout>
+                <Label
+                    x:Name="AutoCheckMark"
+                    FontFamily="FASolid"
+                    FontSize="17"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="False"
+                    Text="{Static fa:SolidIconFont.Check}"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                Dark={StaticResource PrimaryDark}}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </VerticalStackLayout>-->
+
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Source={x:Static viewModels:SettingPageModel.ModeValues}}">
+            <BindableLayout.ItemTemplateSelector>
+                <selectors:LastItemSpecialTemplateSelector x:DataType="models:SettingMode">
+                    <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <controls:CustomizableSettingControl Title="{Binding ., Mode=OneTime, Converter={StaticResource NameConverter}}" Tapped="PreviewableSettingControl_Tapped" />
+                                <BoxView HeightRequest="{OnPlatform WinUI=0.5, Default=0.1}" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
+                    <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                        <DataTemplate>
+                            <controls:CustomizableSettingControl Title="{Binding ., Mode=OneTime, Converter={StaticResource NameConverter}}" Tapped="PreviewableSettingControl_Tapped" />
+                        </DataTemplate>
+                    </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
+                </selectors:LastItemSpecialTemplateSelector>
+            </BindableLayout.ItemTemplateSelector>
         </VerticalStackLayout>
+
 
         <!--<CollectionView
             x:Name="collectionView"

@@ -38,7 +38,7 @@
             Padding="20,0,20,0"
             BackgroundColor="{AppThemeBinding Light={StaticResource Container},
                                               Dark={StaticResource ContainerDark}}"
-            HorizontalOptions="Center"
+            HorizontalOptions="Fill"
             StrokeThickness="0"
             VerticalOptions="Start">
 
@@ -46,13 +46,13 @@
                 <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
 
-            <CollectionView ItemsSource="{Binding Settings}" SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <selectors:LastItemSpecialTemplateSelector>
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Settings}">
+                <BindableLayout.ItemTemplateSelector>
+                    <selectors:LastItemSpecialTemplateSelector x:DataType="observables:SettingObservable">
                         <selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
                             <DataTemplate>
-                                <VerticalStackLayout x:DataType="observables:SettingObservable">
-                                    <controls:SettingControl
+                                <VerticalStackLayout>
+                                    <controls:PreviewableSettingControl
                                         Title="{Binding Type, Mode=OneTime, Converter={StaticResource NameConverter}}"
                                         PreviewValue="{Binding PreviewValue, Mode=OneWay}"
                                         Tapped="TapGestureRecognizer_Tapped" />
@@ -62,16 +62,15 @@
                         </selectors:LastItemSpecialTemplateSelector.DefaultTemplate>
                         <selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
                             <DataTemplate>
-                                <controls:SettingControl
+                                <controls:PreviewableSettingControl
                                     Title="{Binding Type, Mode=OneTime, Converter={StaticResource NameConverter}}"
-                                    x:DataType="observables:SettingObservable"
                                     PreviewValue="{Binding PreviewValue, Mode=OneWay}"
                                     Tapped="TapGestureRecognizer_Tapped" />
                             </DataTemplate>
                         </selectors:LastItemSpecialTemplateSelector.LastItemTemplate>
                     </selectors:LastItemSpecialTemplateSelector>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplateSelector>
+            </VerticalStackLayout>
         </Border>
     </VerticalStackLayout>
 </ContentPage>

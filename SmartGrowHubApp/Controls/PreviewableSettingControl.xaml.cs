@@ -1,16 +1,16 @@
 namespace SmartGrowHubApp.Controls;
 
-public partial class SettingControl : ContentView
+public partial class PreviewableSettingControl
 {
-    public static readonly BindableProperty PreviewValueProperty = BindableProperty.Create(nameof(PreviewValue), typeof(object), typeof(SettingControl), propertyChanged: (bindable, oldValue, newValue) =>
+    public static readonly BindableProperty PreviewValueProperty = BindableProperty.Create(nameof(PreviewValue), typeof(object), typeof(PreviewableSettingControl), propertyChanged: (bindable, oldValue, newValue) =>
     {
-        var control = (SettingControl)bindable;
+        var control = (PreviewableSettingControl)bindable;
         control.PreviewValueLabel.Text = newValue.ToString();
     });
 
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SettingControl), propertyChanged: (bindable, oldValue, newValue) =>
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(PreviewableSettingControl), propertyChanged: (bindable, oldValue, newValue) =>
     {
-        var control = (SettingControl)bindable;
+        var control = (PreviewableSettingControl)bindable;
         control.TitleLabel.Text = newValue as string;
     });
 
@@ -20,7 +20,7 @@ public partial class SettingControl : ContentView
 
     public event EventHandler<TappedEventArgs>? Tapped;
 
-    public SettingControl()
+    public PreviewableSettingControl()
     {
         InitializeComponent();
     }

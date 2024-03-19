@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="SmartGrowHubApp.Controls.CustomizableSettingControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentView.GestureRecognizers>
+        <PointerGestureRecognizer PointerPressed="PointerGestureRecognizer_PointerPressed" PointerReleased="PointerGestureRecognizer_PointerReleased" />
+        <TapGestureRecognizer x:Name="tapGestureRecognizer" Tapped="TapGestureRecognizer_Tapped" />
+    </ContentView.GestureRecognizers>
+
+    <Grid Padding="0,15,0,15" RowDefinitions="Auto">
+        <Label
+            x:Name="titleLabel"
+            FontFamily="GoogleRegular"
+            FontSize="17"
+            TextColor="{AppThemeBinding Light={StaticResource Gray900},
+                                        Dark={StaticResource Gray100}}" />
+
+        <ContentPresenter x:Name="contentArea" />
+    </Grid>
+</ContentView>
