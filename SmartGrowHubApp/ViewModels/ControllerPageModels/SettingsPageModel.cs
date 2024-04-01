@@ -11,7 +11,7 @@ public partial class SettingsPageModel(ISettingsService settingsService) : Obser
     private IEnumerable<SettingObservable> _settings = settingsService.GetSettings();
 
     [RelayCommand]
-    private async Task ShowSettingPage(SettingObservable setting)
+    private async Task ShowSettingPageAsync(SettingObservable setting)
     {
         var parameter = new ShellNavigationQueryParameters
         {

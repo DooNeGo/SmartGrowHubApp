@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
 using SmartGrowHubApp.Pages.ControllerPages;
 using SmartGrowHubApp.Services;

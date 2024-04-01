@@ -14,12 +14,12 @@ public class SettingObservable : ObservableObject
     {
         _settingModel = setting;
 
-        var components = new ComponentObservable[_settingModel.Components.Count()];
-        var counter = 0;
+        List<ComponentModel> componentsList = _settingModel.Components.ToList();
+        var components = new ComponentObservable[componentsList.Count];
 
-        foreach (ComponentModel componentModel in _settingModel.Components)
+        for (var i = 0; i < componentsList.Count; i++)
         {
-            components[counter++] = new ComponentObservable(componentModel);
+            components[i] = new ComponentObservable(componentsList[i]);
         }
 
         Components = components;

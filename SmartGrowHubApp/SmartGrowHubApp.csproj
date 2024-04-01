@@ -119,18 +119,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.2" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
-		<PackageReference Include="CommunityToolkit.Maui.Core" Version="7.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="8.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.10" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="MQTTnet" Version="4.3.3.952" />
-		<PackageReference Include="UraniumUI" Version="2.8.0" />
-		<PackageReference Include="UraniumUI.Material" Version="2.8.0" />
+		<PackageReference Include="UraniumUI" Version="2.8.1" />
+		<PackageReference Include="UraniumUI.Material" Version="2.8.1" />
 	</ItemGroup>
 
 	<!-- <PackageReference Include="runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.2" /> -->

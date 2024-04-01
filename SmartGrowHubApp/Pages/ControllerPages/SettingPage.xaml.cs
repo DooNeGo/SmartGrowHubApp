@@ -6,6 +6,8 @@ public partial class SettingPage
 {
     private readonly SettingPageModel _pageModel;
 
+    private bool _tapped;
+
     public SettingPage(SettingPageModel pageModel)
     {
         InitializeComponent();
@@ -14,8 +16,17 @@ public partial class SettingPage
         BindingContext = _pageModel;
     }
 
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        _pageModel.ShowModeSwitchPageCommand.Execute(null);
+        if (_tapped)
+        {
+            return;
+        }
+
+        _tapped = true;
+
+        await _pageModel.ShowModeSwitchPageCommand.ExecuteAsync(null);
+
+        _tapped = false;
     }
 }

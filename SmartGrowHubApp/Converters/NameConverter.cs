@@ -12,48 +12,30 @@ public class NameConverter : IValueConverter
         {
             return null;
         }
-        
-        string upper  = str.ToUpper(culture);
-        string result = str;
-        var    shift  = 0;
 
-        for (var i = 1; i < str.Length - 1; i++)
+        ReadOnlySpan<char> strSpan = str.AsSpan();
+        Span<char> result = stackalloc char[strSpan.Length * 2];
+        var counter = 0;
+
+        for (var i = 1; i < strSpan.Length - 1; i++)
         {
-            if (str[i] != upper[i] || str[i - 1] == upper[i - 1])
+            if (char.IsUpper(strSpan[i])
+             && char.IsLower(strSpan[i + 1]))
             {
-                continue;
+                result[i + counter++] = ' ';
             }
 
-            result = result.Insert(i + shift, " ");
-            shift++;
+            result[i + counter] = strSpan[i];
         }
 
-        return result;
+        result[0] = strSpan[0];
+        result[strSpan.Length + counter++] = strSpan[^1];
+
+        return result[..(strSpan.Length + counter)].ToString();
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        var str = value?.ToString();
-        
-        if (str is null)
-        {
-            return null;
-        }
-        
-        string result = str;
-        var    shift  = 0;
-
-        for (var i = 1; i < str.Length - 1; i++)
-        {
-            if (str[i] is not ' ')
-            {
-                continue;
-            }
-
-            result = result.Remove(i - shift);
-            shift++;
-        }
-
-        return result;
+        throw new NotImplementedException();
     }
 }
